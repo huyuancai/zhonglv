@@ -47,6 +47,7 @@ public class FileUploadAction extends BaseAction {
 		return uploadImage( UPLOAD_FILE_PATH + "/Visa" );
 	}
 
+	@SuppressWarnings("resource")
 	private String uploadImage( String savePath ) {
 		uploadFileVO = new RetUploadFileVO();
 		String path = getApplication().getRealPath( savePath );
