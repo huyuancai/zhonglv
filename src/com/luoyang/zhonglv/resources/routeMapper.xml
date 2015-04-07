@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luoyang.zhonglv.dao.IRouteDAO">
+
+	<resultMap type="com.luoyang.zhonglv.dto.RouteDTO" id="Route">
+		<id column="route_id" property="routeId"/>
+		<result column="route_name" property="routeName"/>
+		<result column="route_number" property="routeNumber"/>
+		<result column="route_type" property="routeType"/>
+		<result column="route_title" property="routeTitle"/>
+		<result column="route_days" property="routeDays"/>
+		<result column="route_thumb" property="routeThumb"/>
+		<result column="route_destination_city" property="routeDestinationCity"/>
+		<result column="route_departure_city" property="routeDepartureCity"/>
+		<result column="route_transport_mode" property="routeTransportMode"/>
+		<result column="route_departure_date" property="routeDepartureDate"/>
+		<result column="route_price" property="routePrice"/>
+		<result column="route_destine_days" property="routeDestineDays"/>
+		<result column="route_summary" property="routeSummary"/>
+		<result column="route_feature_desc" property="routeFeatureDesc"/>
+		<result column="route_booking_policy" property="routeBookingPolicy"/>
+		<result column="route_tips" property="routeTips"/>
+		<result column="route_itinerary" property="routeItinerary"/>
+		<result column="route_advisory" property="routeAdvisory"/>
+		<result column="route_strategy" property="routeStrategy"/>
+		<result column="route_recommend" property="routeRecommend"/>
+		<result column="route_pay_method" property="routePayMethod"/>
+		<result column="route_create_date" property="routeCreateDate"/>
+	</resultMap>
+	
+	<!-- 根据线路类型和是否推荐查询线路并且分页 -->
+	<select id="getRouteByTypeAndRecommendAndPage" resultMap="Route" parameterType="java.util.Map">
+		SELECT
+			r.route_id,
+			r.route_name,
+			r.route_price,
+			r.route_thumb,
+			r.route_recommend,
+			r.route_type,
+			r.route_title
+		FROM
+			zl_route r
+		WHERE
+			r.route_type = #{routeTypeId}
+		AND 
+			r.route_recommend = #{routeRecommend}
+		ORDER BY
+			r.route_create_date DESC
+		LIMIT #{pageSize} OFFSET #{currentPage}
+	</select>
+	
+	
+	<select id="getRouteByPageAndTypeForList" resultMap="Route" parameterType="java.util.Map">
+		SELECT
+			r.route_id,
+			r.route_name,
+			r.route_price,
+			r.route_thumb,
+			r.route_recommend,
+			r.route_type,
+			r.route_title
+		FROM
+			zl_route r
+			<if test="topicsId != null and topicsId != 0">
+			    LEFT JOIN zl_route_topics rt ON rt.route_id = r.route_id
+			</if>
+		WHERE
+			r.route_type = #{routeTypeId}
+			<if test="topicsId != null and topicsId != 0">
+			    AND rt.topics_id = #{topicsId}
+			</if>
+			<if test="days != null and days &gt; 0 and days &lt; 8">
+			    AND r.route_days = #{days}
+			</if>
+			<if test="days != null and days &gt;= 8">
+			    AND r.route_days > #{days}
+			</if>
+			<if test="desCityId != null and desCityId != 0">
+			    AND r.route_destination_city = #{desCityId}
+			</if>
+		ORDER BY
+			r.route_create_date DESC
+		LIMIT #{pageSize} OFFSET #{currentPage}
+	</select>
+	
+	<!-- 后台管理分页查询 -->
+	<select id="getRouteByPageAndManager" resultMap="Route" parameterType="java.util.Map">
+		SELECT
+			r.route_id,
+			r.route_name,
+			r.route_number,
+			r.route_price,
+			r.route_recommend,
+			r.route_create_date
+		FROM
+			zl_route r
+		WHERE 1 = 1
+	    	<if test="routeName != null">
+	    	    AND r.route_name LIKE '%${routeName}%'
+	    	</if>
+	    	<if test="routeRecommend != null">
+	    	    AND r.route_recommend = #{routeRecommend}
+	    	</if>
+	    ORDER BY
+			r.route_create_date DESC
+		LIMIT #{pageSize} OFFSET #{index} 
+	</select>
+	
+	<!-- 查询线路总条数 -->
+	<select id="getRouteCount" resultType="Long" parameterType="java.util.Map">
+	    SELECT 
+	    	COUNT(1)
+	    FROM
+	    	zl_route r
+	    	<if test="topicsId != null and topicsId != 0">
+			    LEFT JOIN zl_route_topics rt ON rt.route_id = r.route_id
+			</if>
+	    WHERE 1 = 1
+	    	<if test="topicsId != null and topicsId != 0">
+			    AND rt.topics_id = #{topicsId}
+			</if>
+			<if test="days != null and days &gt; 0 and days &lt; 8">
+			    AND r.route_days = #{days}
+			</if>
+			<if test="days != null and days &gt;= 8">
+			    AND r.route_days > #{days}
+			</if>
+			<if test="desCityId != null and desCityId != 0">
+			    AND r.route_destination_city = #{desCityId}
+			</if>
+	    	<if test="routeName != null">
+	    	    AND r.route_name LIKE '%${routeName}%'
+	    	</if>
+	    	<if test="routeRecommend != null">
+	    	    AND r.route_recommend = #{routeRecommend}
+	    	</if>
+	    	<if test="routeTypeId != null">
+	    	    AND r.route_type = #{routeTypeId}
+	    	</if>
+	</select>
+	
+	<insert id="addRoute" parameterType="com.luoyang.zhonglv.dto.RouteDTO" useGeneratedKeys="true" keyProperty="routeId">
+		INSERT INTO 
+			zl_route(
+				route_name,
+				route_number,
+				route_type,
+				route_title,
+				route_days,
+				route_thumb,
+				route_destination_city,
+				route_departure_city,
+				route_transport_mode,
+				route_departure_date,
+				route_price,
+				route_destine_days,
+				route_summary,
+				route_feature_desc,
+				route_booking_policy,
+				route_tips,
+				route_itinerary,
+				route_advisory,
+				route_strategy,
+				route_recommend,
+				route_pay_method,
+				route_create_date
+			) 
+		VALUES (
+			#{routeName},
+			#{routeNumber},
+			#{routeType},
+			#{routeTitle},
+			#{routeDays},
+			#{routeThumb},
+			#{routeDestinationCity},
+			#{routeDepartureCity},
+			#{routeTransportMode},
+			#{routeDepartureDate},
+			#{routePrice},
+			#{routeDestineDays},
+			#{routeSummary},
+			#{routeFeatureDesc},
+			#{routeBookingPolicy},
+			#{routeTips},
+			#{routeItinerary},
+			#{routeAdvisory},
+			#{routeStrategy},
+			#{routeRecommend},
+			#{routePayMethod},
+			CURRENT_TIMESTAMP
+		)
+	</insert>
+	
+	<select id="getRouteById" parameterType="java.lang.Long" resultMap="Route">
+		SELECT 
+			r.route_id,
+			r.route_name,
+			r.route_number,
+			r.route_type,
+			r.route_title,
+			r.route_days,
+			r.route_thumb,
+			r.route_destination_city,
+			r.route_departure_city,
+			r.route_transport_mode,
+			r.route_departure_date,
+			r.route_price,
+			r.route_destine_days,
+			r.route_summary,
+			r.route_feature_desc,
+			r.route_booking_policy,
+			r.route_tips,
+			r.route_itinerary,
+			r.route_advisory,
+			r.route_strategy,
+			r.route_recommend,
+			r.route_pay_method,
+			r.route_create_date
+		FROM
+			zl_route r
+		WHERE
+			r.route_id = #{routeId}
+	</select>
+	
+	<update id="updateRoute" parameterType="com.luoyang.zhonglv.dto.RouteDTO">
+	    UPDATE
+	    	zl_route 
+	    SET
+	    	route_name = #{routeName},
+			route_number = #{routeNumber},
+			route_type = #{routeType},
+			route_title = #{routeTitle},
+			route_days = #{routeDays},
+			route_thumb = #{routeThumb},
+			route_destination_city = #{routeDestinationCity},
+			route_departure_city = #{routeDepartureCity},
+			route_transport_mode = #{routeTransportMode},
+			route_departure_date = #{routeDepartureDate},
+			route_price = #{routePrice},
+			route_destine_days = #{routeDestineDays},
+			route_summary = #{routeSummary},
+			route_feature_desc = #{routeFeatureDesc},
+			route_booking_policy = #{routeBookingPolicy},
+			route_tips = #{routeTips},
+			route_itinerary = #{routeItinerary},
+			route_advisory = #{routeAdvisory},
+			route_strategy = #{routeStrategy},
+			route_recommend = #{routeRecommend},
+			route_pay_method = #{routePayMethod}
+		WHERE
+			route_id = #{routeId}
+	</update>
+	
+	<delete id="deleteRoute" parameterType="java.lang.Long">
+		DELETE FROM 
+			zl_route
+		WHERE
+			route_id = #{routeId}
+	</delete>
+	
+	<delete id="deleteRouteByRouteTypeId" parameterType="java.lang.Long">
+		DELETE FROM 
+			zl_route
+		WHERE
+			route_type = #{routeTypeId}
+	</delete>
+	
+	<delete id="deleteRouteByRouteTopicsId" parameterType="java.lang.Long">
+		DELETE FROM 
+			zl_route
+		WHERE
+			route_topics = #{routeTopicsId}
+	</delete>
+	
+	<delete id="deleteRouteByIds" parameterType="java.util.List">
+		DELETE FROM 
+			zl_route
+		WHERE
+			route_id 
+		IN
+			<foreach collection="list" item="routeId" open="(" separator="," close=")">
+	    		#{routeId}   
+	    	</foreach>
+	</delete>
+	
+	<update id="updateRouteRecommend" parameterType="java.util.List">
+	    UPDATE
+	    	zl_route 
+	    SET
+	    	route_recommend = 1
+	    WHERE
+	    	route_id
+	    IN
+	    	<foreach collection="list" item="routeId" open="(" separator="," close=")">
+	    		#{routeId}   
+	    	</foreach>
+	</update>
+	
+	<update id="updateCancelRouteRecommend" parameterType="java.util.List">
+	    UPDATE
+	    	zl_route 
+	    SET
+	    	route_recommend = 0
+	    WHERE
+	    	route_id
+	    IN
+	    	<foreach collection="list" item="routeId" open="(" separator="," close=")">
+	    		#{routeId}   
+	    	</foreach>
+	</update>
+</mapper>

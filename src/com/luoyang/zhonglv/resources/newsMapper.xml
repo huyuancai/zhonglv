@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luoyang.zhonglv.dao.ITourismNewsDAO">
+    <resultMap type="com.luoyang.zhonglv.dto.TourismNewsDTO" id="TourismNews">
+		<id column="news_id" property="newsId"/>
+		<result column="news_name" property="newsName"/>
+		<result column="news_content" property="newsContent"/>
+		<result column="news_counts" property="newsCounts"/>
+		<result column="news_create_time" property="newsCreateTime"/>
+	</resultMap>
+	
+    <insert id="addTourismNews" parameterType="com.luoyang.zhonglv.dto.TourismNewsDTO">
+		INSERT INTO
+			zl_tourism_news(
+				news_name,
+				news_content,
+				news_counts,
+				news_create_time
+			)
+		VALUES(
+			#{newsName},
+			#{newsContent},
+			#{newsCounts},
+			CURRENT_TIMESTAMP
+		)
+    </insert>
+    
+    <select id="getTourismNewsByPageForHome" resultMap="TourismNews" parameterType="java.util.Map">
+	    SELECT
+			tn.news_name,
+			tn.news_id
+		FROM
+			zl_tourism_news tn
+		ORDER BY
+			tn.news_create_time DESC
+		LIMIT #{pageSize} OFFSET #{currentPage}
+	</select>
+	
+	<select id="getTourismNewsByPageForManager" resultMap="TourismNews" parameterType="java.util.Map">
+	    SELECT
+			ts.news_name,
+			ts.news_id,
+			ts.news_counts,
+			ts.news_create_time
+		FROM
+			zl_tourism_news ts
+		WHERE 1=1
+			<if test="newsName != null">
+			    AND ts.news_name LIKE '%${newsName}%'
+			</if>
+		ORDER BY
+			ts.news_create_time DESC
+		LIMIT #{pageSize} OFFSET #{currentPage}
+	</select>
+	
+    <select id="getTourismNewsByPageForList" resultMap="TourismNews" parameterType="java.util.Map">
+		SELECT
+			tn.news_id,
+			tn.news_name,
+			tn.news_create_time
+		FROM
+			zl_tourism_news tn
+		ORDER BY
+			tn.news_create_time DESC
+		LIMIT #{pageSize} OFFSET #{currentPage}
+	</select>
+	
+    <select id="getTourismNewsCount" resultType="Long" parameterType="java.util.Map">
+	    SELECT
+			COUNT(1)
+		FROM
+			zl_tourism_news tn
+	</select>
+	
+    <select id="getTourismNewsById" resultMap="TourismNews" parameterType="java.lang.Long">
+        SELECT
+			ts.news_id,
+			ts.news_name,
+			ts.news_content,
+			ts.news_counts,
+			ts.news_create_time
+		FROM
+			zl_tourism_news ts
+		WHERE
+			ts.news_id = #{newsId}
+    </select>
+    
+    <update id="updateTourismNews" parameterType="com.luoyang.zhonglv.dto.TourismNewsDTO">
+        UPDATE
+        	zl_tourism_news
+        SET
+        	news_name = #{newsName},
+        	news_content = #{newsContent},
+        	news_counts = #{newsCounts}
+        WHERE
+        	news_id = #{newsId}
+    </update>
+    
+    <delete id="deleteTourismNews" parameterType="java.lang.Long">
+		DELETE FROM 
+			zl_tourism_news
+		WHERE
+			news_id = #{newsId}
+	</delete>
+	
+    <delete id="deleteTourismNewsByIds" parameterType="java.util.List">
+		DELETE FROM 
+			zl_tourism_news
+		WHERE
+			news_id 
+		IN
+			<foreach collection="list" item="tourismNewsId" open="(" separator="," close=")">
+	    		#{tourismNewsId}   
+	    	</foreach>
+	</delete>
+</mapper>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luoyang.zhonglv.dao.ITourismStrategyDAO">
+    <resultMap type="com.luoyang.zhonglv.dto.TourismStrategyDTO" id="TourismStrategy">
+		<id column="strategy_id" property="strategyId"/>
+		<result column="strategy_name" property="strategyName"/>
+		<result column="strategy_content" property="strategyContent"/>
+		<result column="strategy_counts" property="strategyCounts"/>
+		<result column="strategy_create_time" property="strategyCreateTime"/>
+	</resultMap>
+	
+    <insert id="addTourismStrategy" parameterType="com.luoyang.zhonglv.dto.TourismStrategyDTO">
+		INSERT INTO
+			zl_tourism_strategy(
+				strategy_name,
+				strategy_content,
+				strategy_counts,
+				strategy_create_time
+			)
+		VALUES(
+			#{strategyName},
+			#{strategyContent},
+			#{strategyCounts},
+			CURRENT_TIMESTAMP
+		)
+    </insert>
+    
+    <select id="getTourismStrategyByPageForHome" resultMap="TourismStrategy" parameterType="java.util.Map">
+	    SELECT
+			ts.strategy_name,
+			ts.strategy_id
+		FROM
+			zl_tourism_strategy ts
+		ORDER BY
+			ts.strategy_create_time DESC
+		LIMIT #{pageSize} OFFSET #{currentPage}
+	</select>
+	
+    <select id="getTourismStrategyByPageForManager" resultMap="TourismStrategy" parameterType="java.util.Map">
+	    SELECT
+			ts.strategy_name,
+			ts.strategy_id,
+			ts.strategy_counts,
+			ts.strategy_create_time
+		FROM
+			zl_tourism_strategy ts
+		WHERE 1=1
+			<if test="strategyName != null">
+			    AND ts.strategy_name LIKE '%${strategyName}%'
+			</if>
+		ORDER BY
+			ts.strategy_create_time DESC
+		LIMIT #{pageSize} OFFSET #{currentPage}
+	</select>
+	
+    <select id="getTourismStrategyByPageForList" resultMap="TourismStrategy" parameterType="java.util.Map">
+		SELECT
+			ts.strategy_id,
+			ts.strategy_name,
+			ts.strategy_create_time
+		FROM
+			zl_tourism_strategy ts
+		ORDER BY
+			ts.strategy_create_time DESC
+		LIMIT #{pageSize} OFFSET #{currentPage}
+	</select>
+	
+    <select id="getTourismStrategyCount" resultType="Long" parameterType="java.util.Map">
+	    SELECT
+			COUNT(1)
+		FROM
+			zl_tourism_strategy ts
+	</select>
+	
+    <select id="getTourismStrategyById" resultMap="TourismStrategy" parameterType="java.lang.Long">
+        SELECT
+			ts.strategy_id,
+			ts.strategy_name,
+			ts.strategy_content,
+			ts.strategy_counts,
+			ts.strategy_create_time
+		FROM
+			zl_tourism_strategy ts
+		WHERE
+			ts.strategy_id = #{strategyId}
+    </select>
+    
+    <update id="updateTourismStrategy" parameterType="com.luoyang.zhonglv.dto.TourismStrategyDTO">
+        UPDATE
+        	zl_tourism_strategy
+        SET
+        	strategy_name = #{strategyName},
+        	strategy_content = #{strategyContent},
+        	strategy_counts = #{strategyCounts}
+        WHERE
+        	strategy_id = #{strategyId}
+    </update>
+    
+    <delete id="deleteTourismStrategy" parameterType="java.lang.Long">
+		DELETE FROM 
+			zl_tourism_strategy
+		WHERE
+			strategy_id = #{strategyId}
+	</delete>
+	
+    <delete id="deleteTourismStrategyByIds" parameterType="java.util.List">
+		DELETE FROM 
+			zl_tourism_strategy
+		WHERE
+			strategy_id 
+		IN
+			<foreach collection="list" item="tourismStrategyId" open="(" separator="," close=")">
+	    		#{tourismStrategyId}   
+	    	</foreach>
+	</delete>
+</mapper>

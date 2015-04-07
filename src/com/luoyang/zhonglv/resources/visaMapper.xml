@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luoyang.zhonglv.dao.IVisaDAO">
+
+	<resultMap type="com.luoyang.zhonglv.dto.VisaDTO" id="Visa">
+		<id column="visa_id" property="visaId"/>
+		<result column="visa_name" property="visaName"/>
+		<result column="visa_country" property="visaCountry"/>
+		<result column="visa_type" property="visaType"/>
+		<result column="visa_thumb" property="visaThumb"/>
+		<result column="visa_price" property="visaPrice"/>
+		<result column="visa_city" property="visaCity"/>
+		<result column="visa_validity" property="visaValidity"/>
+		<result column="visa_process_time" property="visaProcessTime"/>
+		<result column="visa_max_stay" property="visaMaxStay"/>
+		<result column="visa_immigrants_times" property="visaImmigrantsTimes"/>
+		<result column="visa_interview" property="visaInterview"/>
+		<result column="visa_summary" property="visaSummary"/>
+		<result column="visa_materials" property="visaMaterials"/>
+		<result column="visa_introduction" property="visaIntroduction"/>
+		<result column="visa_count" property="visaCount"/>
+		<result column="visa_create_time" property="visaCreateTime"/>
+		<result column="visa_update_time" property="visaUpdateTime"/>
+	</resultMap>
+	
+	<select id="getVisaByPage" resultMap="Visa" parameterType="java.util.Map">
+		SELECT
+			v.visa_id,
+			v.visa_name,
+			v.visa_price,
+			v.visa_count,
+			v.visa_create_time
+		FROM
+			zl_visa v
+		ORDER BY
+			v.visa_create_time DESC
+		LIMIT #{pageSize} OFFSET #{currentPage}
+	</select>
+	
+	<select id="getAllVisa" resultMap="Visa">
+		SELECT
+			*
+		FROM
+			zl_visa v
+		ORDER BY
+			v.visa_create_time DESC
+	</select>
+	
+	<!-- 后台管理分页查询 -->
+	<select id="getVisaByPageAndManager" resultMap="Visa" parameterType="java.util.Map">
+	    SELECT
+			v.visa_id,
+			v.visa_name,
+			v.visa_price,
+			v.visa_count,
+			v.visa_create_time
+		FROM
+			zl_visa v
+		WHERE 1 = 1
+			<if test="visaCountry != null and visaCountry != 0">
+	    	    AND v.visa_country = #{visaCountry}
+	    	</if>
+			<if test="visaType != null and visaType != 0">
+	    	    AND v.visa_type = #{visaType}
+	    	</if>
+			<if test="visaCity != null and visaCity != 0">
+	    	    AND v.visa_city = #{visaCity}
+	    	</if>
+			<if test="visaName != null">
+	    	    AND v.visa_name LIKE '%${visaName}%'
+	    	</if>
+		ORDER BY
+			v.visa_create_time DESC
+		LIMIT #{pageSize} OFFSET #{index}
+	</select>
+	
+	<select id="getVisaByPageForHome" resultMap="Visa" parameterType="java.util.Map">
+	    SELECT
+			v.visa_id,
+			v.visa_name,
+			v.visa_thumb
+		FROM
+			zl_visa v
+		ORDER BY
+			v.visa_create_time DESC
+		LIMIT #{pageSize} OFFSET #{currentPage}
+	</select>
+	
+	<!-- 查询线路总条数 -->
+	<select id="getVisaCount" resultType="Long" parameterType="java.util.Map">
+	    SELECT
+			COUNT(1)
+		FROM
+			zl_visa v
+		WHERE 1 = 1
+			<if test="visaCountry != null and visaCountry != 0">
+	    	    AND v.visa_country = #{visaCountry}
+	    	</if>
+			<if test="visaType != null and visaType != 0">
+	    	    AND v.visa_type = #{visaType}
+	    	</if>
+			<if test="visaCity != null and visaCity != 0">
+	    	    AND v.visa_city = #{visaCity}
+	    	</if>
+			<if test="visaName != null">
+	    	    AND v.visa_name LIKE '%${visaName}%'
+	    	</if>
+	</select>
+	
+	<insert id="addVisa" parameterType="com.luoyang.zhonglv.dto.VisaDTO">
+		INSERT INTO 
+			zl_visa (
+				visa_name,
+				visa_country,
+				visa_type,
+				visa_thumb,
+				visa_price,
+				visa_city,
+				visa_validity,
+				visa_process_time,
+				visa_max_stay,
+				visa_immigrants_times,
+				visa_interview,
+				visa_materials,
+				visa_introduction,
+				visa_count,
+				visa_create_time
+			)
+		VALUES(
+			#{visaName},
+			#{visaCountry},
+			#{visaType},
+			#{visaThumb},
+			#{visaPrice},
+			#{visaCity},
+			#{visaValidity},
+			#{visaProcessTime},
+			#{visaMaxStay},
+			#{visaImmigrantsTimes},
+			#{visaInterview},
+			#{visaMaterials},
+			#{visaIntroduction},
+			#{visaCount},
+			CURRENT_TIMESTAMP
+		);	    
+	</insert>
+	
+	<select id="getVisaById" parameterType="java.lang.Long" resultMap="Visa">
+		SELECT 
+			v.visa_id,
+			v.visa_name,
+			v.visa_country,
+			v.visa_type,
+			v.visa_thumb,
+			v.visa_price,
+			v.visa_city,
+			v.visa_validity,
+			v.visa_process_time,
+			v.visa_max_stay,
+			v.visa_immigrants_times,
+			v.visa_interview,
+			v.visa_summary,
+			v.visa_materials,
+			v.visa_introduction,
+			v.visa_count,
+			v.visa_create_time,
+			v.visa_update_time
+		FROM
+			zl_visa v
+		WHERE
+			v.visa_id = #{visaId}
+	</select>	
+	<update id="updateVisa" parameterType="com.luoyang.zhonglv.dto.VisaDTO">
+		UPDATE
+			zl_visa
+		SET 
+			visa_name = #{visaName},
+			visa_country = #{visaCountry},
+			visa_type = #{visaType},
+			visa_thumb = #{visaThumb},
+			visa_price = #{visaPrice},
+			visa_city = #{visaCity},
+			visa_validity = #{visaValidity},
+			visa_process_time = #{visaProcessTime},
+			visa_max_stay = #{visaMaxStay},
+			visa_immigrants_times = #{visaImmigrantsTimes},
+			visa_interview = #{visaInterview},
+			visa_materials = #{visaMaterials},
+			visa_introduction = #{visaIntroduction},
+			visa_count = #{visaCount}
+			visa_update_time = CURRENT_TIMESTAMP
+		WHERE
+			visa_id = #{visaId}
+	</update>	
+	
+	<select id="getVisaByPageForList" resultMap="Visa" parameterType="java.util.Map">
+		SELECT
+			v.visa_id,
+			v.visa_name,
+			v.visa_price,
+			v.visa_thumb
+		FROM
+			zl_visa v
+		WHERE 1 = 1
+			<if test="visaCountry != null and visaCountry != 0">
+	    	    AND v.visa_country = #{visaCountry}
+	    	</if>
+			<if test="visaType != null and visaType != 0">
+	    	    AND v.visa_type = #{visaType}
+	    	</if>
+		ORDER BY
+			v.visa_create_time DESC
+		LIMIT #{pageSize} OFFSET #{currentPage}
+	</select>
+	
+	<delete id="deleteVisa" parameterType="java.lang.Long">
+		DELETE FROM 
+			zl_visa
+		WHERE
+			visa_id = #{visaId}
+	</delete>
+	
+	<delete id="deleteVisaByIds" parameterType="java.util.List">
+		DELETE FROM 
+			zl_visa
+		WHERE
+			visa_id 
+		IN
+			<foreach collection="list" item="visaId" open="(" separator="," close=")">
+	    		#{visaId}   
+	    	</foreach>
+	</delete>
+</mapper>

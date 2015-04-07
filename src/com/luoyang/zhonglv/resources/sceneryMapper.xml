@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luoyang.zhonglv.dao.ISceneryDAO">
+
+	<resultMap type="com.luoyang.zhonglv.dto.SceneryDTO" id="Scenery">
+		<id column="scenery_id" property="sceneryId"/>
+		<result column="scenery_name" property="sceneryName"/>
+		<result column="scenery_level" property="sceneryLevel"/>
+		<result column="scenery_title" property="sceneryTitle"/>
+		<result column="scenery_thumb" property="sceneryThumb"/>
+		<result column="scenery_city" property="sceneryCity"/>
+		<result column="scenery_addr" property="sceneryAddr"/>
+		<result column="scenery_lng" property="sceneryLng"/>
+		<result column="scenery_lat" property="sceneryLat"/>
+		<result column="scenery_price" property="sceneryPrice"/>
+		<result column="scenery_tickets_addr" property="sceneryTicketsAddr"/>
+		<result column="scenery_tel" property="sceneryTel"/>
+		<result column="scenery_introduce" property="sceneryIntroduce"/>
+		<result column="scenery_summary" property="scenerySummary"/>
+		<result column="scenery_recommend" property="sceneryRecommend"/>
+		<result column="scenery_images" property="sceneryImages"/>
+		<result column="scenery_hits" property="sceneryHits"/>
+		<result column="scenery_create_date" property="sceneryCreateDate"/>
+		<result column="scenery_update_date" property="sceneryUpdateDate"/>
+	</resultMap>
+	
+	<select id="getSceneryByRecommendAndPage" resultMap="Scenery" parameterType="java.util.Map">
+		SELECT
+			s.scenery_id,
+			s.scenery_name,
+			s.scenery_price,
+			s.scenery_thumb,
+			s.scenery_recommend,
+			s.scenery_title
+		FROM
+			zl_scenery s
+		WHERE
+			s.scenery_recommend = #{sceneryRecommend}
+		ORDER BY
+			s.scenery_create_date DESC
+		LIMIT #{pageSize} OFFSET #{currentPage}
+	</select>
+	
+	<select id="getAllScenery" resultMap="Scenery">
+		SELECT
+			*
+		FROM
+			zl_scenery s
+		ORDER BY
+			s.scenery_update_date DESC
+	</select>
+	
+	<insert id="addScenery" parameterType="com.luoyang.zhonglv.dto.SceneryDTO">
+	    INSERT INTO
+	    	zl_scenery(
+	    		scenery_name,
+	    		scenery_level,
+	    		scenery_title,
+	    		scenery_thumb,
+	    		scenery_city,
+	    		scenery_addr,
+	    		scenery_lng,
+	    		scenery_lat,
+	    		scenery_price,
+	    		scenery_tickets_addr,
+	    		scenery_tel,
+	    		scenery_introduce,
+	    		scenery_summary,
+	    		scenery_recommend,
+	    		scenery_images,
+	    		scenery_create_date
+	    	)
+	    VALUES(
+	    	#{sceneryName},
+    		#{sceneryLevel},
+    		#{sceneryTitle},
+    		#{sceneryThumb},
+    		#{sceneryCity},
+    		#{sceneryAddr},
+    		#{sceneryLng},
+    		#{sceneryLat},
+    		#{sceneryPrice},
+    		#{sceneryTicketsAddr},
+    		#{sceneryTel},
+    		#{sceneryIntroduce},
+    		#{scenerySummary},
+    		#{sceneryRecommend},
+    		#{sceneryImages},
+    		CURRENT_TIMESTAMP
+	    )
+	</insert>
+	
+	<!-- 后台管理分页查询 -->
+	<select id="getSceneryByPageAndManager" resultMap="Scenery" parameterType="java.util.Map">
+		SELECT
+			s.scenery_id,
+			s.scenery_name,
+			s.scenery_level,
+			s.scenery_price,
+			s.scenery_hits,
+			s.scenery_addr,
+			s.scenery_recommend,
+			s.scenery_create_date
+		FROM
+			zl_scenery s
+		WHERE 1 = 1
+	    	<if test="sceneryName != null">
+	    	    AND s.scenery_name LIKE '%${sceneryName}%'
+	    	</if>
+	    	<if test="sceneryRecommend != null">
+	    	    AND s.scenery_recommend = #{sceneryRecommend}
+	    	</if>
+	    ORDER BY
+			s.scenery_create_date DESC
+		LIMIT #{pageSize} OFFSET #{index} 
+	</select>
+	
+	<!-- 查询线路总条数 -->
+	<select id="getSceneryCount" resultType="Long" parameterType="java.util.Map">
+	    SELECT 
+	    	COUNT(1)
+	    FROM
+	    	zl_scenery s
+	    WHERE 1 = 1
+	    	<if test="sceneryName != null">
+	    	    AND s.scenery_name LIKE '%${sceneryName}%'
+	    	</if>
+	    	<if test="sceneryRecommend != null">
+	    	    AND s.scenery_recommend = #{sceneryRecommend}
+	    	</if>
+	</select>
+	
+	<select id="getSceneryById" parameterType="java.lang.Long" resultMap="Scenery">
+		SELECT 
+			s.scenery_id,
+			s.scenery_name,
+			s.scenery_level,
+			s.scenery_title,
+			s.scenery_thumb,
+			s.scenery_city,
+			s.scenery_addr,
+			s.scenery_lng,
+			s.scenery_lat,
+			s.scenery_price,
+			s.scenery_tickets_addr,
+			s.scenery_tel,
+			s.scenery_introduce,
+			s.scenery_summary,
+			s.scenery_recommend,
+			s.scenery_hits,
+			s.scenery_create_date,
+			s.scenery_update_date
+		FROM
+			zl_scenery s
+		WHERE
+			s.scenery_id = #{sceneryId}
+	</select>
+	
+	<update id="updateScenery" parameterType="com.luoyang.zhonglv.dto.SceneryDTO">
+		UPDATE
+			zl_scenery
+		SET 
+			scenery_name = #{sceneryName},
+			scenery_level = #{sceneryLevel},
+			scenery_title = #{sceneryTitle},
+			scenery_thumb = #{sceneryThumb},
+			scenery_city = #{sceneryCity},
+			scenery_addr = #{sceneryAddr},
+			scenery_lng = #{sceneryLng},
+			scenery_lat = #{sceneryLat},
+			scenery_price = #{sceneryPrice},
+			scenery_tickets_addr = #{sceneryTicketsAddr},
+			scenery_tel = #{sceneryTel},
+			scenery_introduce = #{sceneryIntroduce},
+			scenery_summary = #{scenerySummary},
+			scenery_recommend = #{sceneryRecommend},
+			scenery_hits = #{sceneryHits},
+			scenery_update_date = CURRENT_TIMESTAMP
+		WHERE
+			scenery_id = #{sceneryId}
+	</update>
+	
+	<select id="getSceneryByPageForList" resultMap="Scenery" parameterType="java.util.Map">
+		SELECT
+			zs.scenery_id,
+			zs.scenery_name,
+			zs.scenery_price,
+			zs.scenery_thumb
+		FROM
+			zl_scenery zs
+		ORDER BY
+			zs.scenery_create_date DESC
+		LIMIT #{pageSize} OFFSET #{currentPage}
+	</select>
+	
+	<delete id="deleteScenery" parameterType="java.lang.Long">
+		DELETE FROM 
+			zl_scenery
+		WHERE
+			scenery_id = #{sceneryId}
+	</delete>
+	
+	<delete id="deleteSceneryByIds" parameterType="java.util.List">
+		DELETE FROM 
+			zl_scenery
+		WHERE
+			scenery_id 
+		IN
+			<foreach collection="list" item="sceneryId" open="(" separator="," close=")">
+	    		#{sceneryId}   
+	    	</foreach>
+	</delete>
+	
+	<update id="updateSceneryRecommend" parameterType="java.util.List">
+	    UPDATE
+	    	zl_scenery 
+	    SET
+	    	scenery_recommend = 1
+	    WHERE
+	    	scenery_id
+	    IN
+	    	<foreach collection="list" item="sceneryId" open="(" separator="," close=")">
+	    		#{sceneryId}   
+	    	</foreach>
+	</update>
+	
+	<update id="updateCancelSceneryRecommend" parameterType="java.util.List">
+	    UPDATE
+	    	zl_scenery 
+	    SET
+	    	scenery_recommend = 0
+	    WHERE
+	    	scenery_id
+	    IN
+	    	<foreach collection="list" item="sceneryId" open="(" separator="," close=")">
+	    		#{sceneryId}   
+	    	</foreach>
+	</update>
+</mapper>

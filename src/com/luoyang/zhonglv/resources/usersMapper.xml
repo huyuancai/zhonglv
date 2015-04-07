@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luoyang.zhonglv.dao.IUserDAO">
+
+	<resultMap type="com.luoyang.zhonglv.dto.UserDTO" id="User">
+		<id column="user_id" property="userId"/>
+		<result column="user_name" property="userName"/>
+		<result column="user_sex" property="userSex"/>
+		<result column="user_password" property="userPassword"/>
+		<result column="user_mail" property="userMail"/>
+		<result column="user_register_time" property="userRegisterTime"/>
+	</resultMap>
+
+	<select id="getUserByUserNameAndPass" parameterType="hashMap" resultMap="User">
+		SELECT
+			*
+		FROM
+			zl_users u
+		WHERE
+			u.user_name = #{userName}
+		AND 
+			u.user_password = #{userPassword}
+	</select>
+	
+</mapper>

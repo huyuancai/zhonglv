@@ -1,0 +1,154 @@
+body{margin:0px 5px; font-size:12px;}
+input,td{font-size: 12px;}
+div{margin:0px; padding:0px; font-size:12px;}
+form{margin:0px;}
+.clear{clear:both;}
+.hidden{ display:none;}
+.show{ display:inline;}
+.left{ float:left;}
+.right{float:right; padding-right:5px;}
+.red{ color:Red;}
+.info{ text-align:center; line-height:24px; color:Red; font-weight:bold; border:solid 1px #eeeeee;}
+a:link{color:#000000; font-size:12px; text-decoration:none;}
+a:hover{color:#000000; font-size:12px; text-decoration:none;}
+a:visited{color:#000000; font-size:12px; text-decoration:none;}
+a:active{color:#000000; font-size:12px; text-decoration:none;}
+
+a.white:link{color:#FFFFFF; font-size:12px; text-decoration:none;}
+a.white:hover{color:#FFFFFF; font-size:12px; text-decoration:underline;}
+a.white:visited{color:#FFFFFF; font-size:12px; text-decoration:none;}
+a.white:active{color:#FFFFFF; font-size:12px; text-decoration:none;}
+.black_border{border:1px solid #cccccc;}
+.btn_border{border:1px solid #666666;}
+.topic{ color: #FF9900; font-weight:bold; padding-left:10px; text-align:left; line-height:24px;}
+.suphead td{ background-color:#DAEEF5; color:#404040; font-size:12px; padding:0px; font-weight:bold; line-height:30px; text-align:center;}
+.lines td{ background-color:#FAFAFA; color:#404040; font-size:12px; padding:8px 0px 8px 0px; line-height:18px; text-align:center;}
+.lines:hover td{ background-color:#FAE2C3;}
+.lines td a{font-size:12px; color:#2D52A5; text-decoration:none;}
+.alterlines td{ background-color:#ffffff; color:#000000; font-size:12px; padding:8px 0px 8px 0px; line-height:18px; text-align:center;}
+.fields_text{ background-color:#fafafa; color:#4d4d4d; font-size:12px; line-height:30px; text-align:left; padding-left:5px;}
+.fields_input{ background-color:#fafafa; color:#4d4d4d; text-align:left; padding-left:5px;}
+.statusbar{ font-size:12px; color:#333333; text-align:left; padding-left:10px; line-height:20px; background-color:Gray;}
+.dates{ width:80px; height:22px;line-height:22px;font-size:12px;background:url(../images/input_bg.png) no-repeat;border:1px #B9C8E7 solid;color:#333;padding:0 0 0 5px;}
+.input_mini{ width:50px; height:22px;line-height:22px;font-size:12px;background:url(../images/input_bg.png) no-repeat;border:1px #B9C8E7 solid;color:#333;padding:0 0 0 5px;}
+.input_normal{ width:100px; height:22px;line-height:22px;font-size:12px;background:url(../images/input_bg.png) no-repeat;border:1px #B9C8E7 solid;color:#333;padding:0 0 0 5px;}
+.input_middle{ width:200px;  height:22px;line-height:22px;font-size:12px;background:url(../images/input_bg.png) no-repeat;border:1px #B9C8E7 solid;color:#333;padding:0 0 0 5px;}
+.input_long{ width:400px;  height:22px;line-height:22px;font-size:12px;background:url(../images/input_bg.png) no-repeat;border:1px #B9C8E7 solid;color:#333;padding:0 0 0 5px;}
+.input_bigger{ width:98%;  height:22px;line-height:22px;font-size:12px;background:url(../images/input_bg.png) no-repeat;border:1px #B9C8E7 solid;color:#333;padding:0 0 0 5px;}
+.select{border:1px solid #b9c8e7; padding:2px;}
+.text_normal{ width:98%;  line-height:150%; font-size:12px;background:url(../images/input_bg.png) no-repeat;border:1px #B9C8E7 solid;color:#333;padding:0 0 0 5px;}
+.text_content{ width:98%; line-height:150%; font-size:12px;background:url(../images/input_bg.png) no-repeat;border:1px #B9C8E7 solid;color:#333;padding:0 0 0 5px;}
+.text_content_default{ width:98%; height:100px; line-height:150%; font-size:12px;background:url(../images/input_bg.png) no-repeat;border:1px #B9C8E7 solid;color:#333;padding:0 0 0 5px;}
+.text_content_big{ width:98%; height:400px; line-height:150%; font-size:12px;background:url(../images/input_bg.png) no-repeat;border:1px #B9C8E7 solid;color:#333;padding:0 0 0 5px;}
+.hidden{ display:none;}
+.notice{ background-color:#FFFAE6; border:1px solid #FFE8B3; padding:5px; line-height:20px;}
+.info{ width:98%; text-align:center; font-size:12px; color:Black; margin:10px auto; padding:5px; border:solid 1px #eeeeee; background-color:#f5f5f5;}
+.category{ text-align:center; font-size:12px; color:red; font-weight:bold;  line-height:22px; padding:5px 10px 5px 5px;}
+.selclass{background-image:url(../images/btn_bg.gif); cursor:pointer; width:90px; height:24px; border:0px solid #fff; line-height:24px; text-align:center;}
+.line22{ line-height:22px;}
+.btn-submit{ background-color: transparent; background-image: url("../images/btn-fixed.png"); border: 1px solid #FF8900; background-position: 0 -163px; width: 82px;	color: #FFFFFF; font-weight: bold; height: 28px; line-height: 28px; padding: 0 10px 3px; cursor:pointer;}
+.btn-submit:hover{ background-position: 0 -132px; width: 82px; color: #FFFFFF; font-weight: bold; height: 28px; line-height: 28px; padding: 0 10px 3px;}
+
+.btn-cancel{ background-color: transparent; background-image: url("../images/btn-fixed.png"); border: 1px solid #ccc; background-position: 0 -68px; width: 82px;	color: #4d4d4d; font-weight: bold; height: 28px; line-height: 28px; padding: 0 10px 3px; cursor:pointer;}
+.btn-cancel:hover{ background-position: 0 -193px; width: 82px; color: #4d4d4d; font-weight: bold; height: 28px; line-height: 28px; padding: 0 10px 3px;}
+.btn-general{border:1px #ddd solid;height:24px;line-height:24px;text-align:center;font-size:12px; background-color:#F3F3F3; color:#2F6FDD; cursor:pointer;}
+.breakchar{word-break:break-all;word-wrap:break-word;}
+.PagerContainerTable
+{
+	border-right: #333333 0px solid;
+	border-top: #333333 0px solid;
+	border-left: #333333 0px solid;
+	color: #d1d1e1;
+	border-bottom: #333333 0px solid;
+	background-color: #eeeeee;
+	text-align:center;
+}
+.PagerInfoCell
+{
+	padding-right: 6px;
+	padding-left: 6px;
+	padding-bottom: 3px;
+	font: bold 11px arial, verdana, geneva, lucida, 'lucida grande' , arial, helvetica, sans-serif;
+	color: #f0f1f2;
+	padding-top: 3px;
+	white-space: nowrap;
+	background-color: #990000;
+	font-weight:normal;
+}
+.PagerInfoCell:link
+{
+	color: #ffcc66;
+	text-decoration: none;
+}
+.PagerInfoCell:visited
+{
+	color: #ffcc66;
+	text-decoration: none;
+}
+.PagerCurrentPageCell
+{
+	color: #990000;
+	background-color: #FFFF99;
+	cursor:default;
+}
+.PagerOtherPageCells
+{
+	background-color: #f0f1f2;
+}
+.PagerSSCCells
+{
+	background-color: #cccccc;
+}
+.PagerHyperlinkStyle
+{
+	font: 11px arial, verdana, geneva, lucida, 'lucida grande' , arial, helvetica, sans-serif;
+}
+.PagerHyperlinkStyle:hover
+{
+	color: #000000;
+	text-decoration: none;
+	font: 11px arial, verdana, geneva, lucida, 'lucida grande' , arial, helvetica, sans-serif;
+}
+.PagerHyperlinkStyle:link
+{
+	color: #000000;
+	text-decoration: none;
+	font: 11px arial, verdana, geneva, lucida, 'lucida grande' , arial, helvetica, sans-serif;
+}
+.PagerHyperlinkStyle:visited
+{
+	color: #000000;
+	text-decoration: none;
+	font: 11px arial, verdana, geneva, lucida, 'lucida grande' , arial, helvetica, sans-serif;
+}
+.PagerHyperlinkStyle:active
+{
+	color: #000000;
+	text-decoration: none;
+	font: 11px arial, verdana, geneva, lucida, 'lucida grande' , arial, helvetica, sans-serif;
+}
+.GoToLabel
+{
+	font: 11px arial, verdana, geneva, lucida, 'lucida grande' , arial, helvetica, sans-serif;
+	color:#333333;
+	cursor:pointer;
+	font-size:65%;
+	vertical-align:middle;
+	display:inline;
+}
+.GoToSelect
+{
+	font-size:55%;
+}
+.GoToSelectedOption
+{
+	color:#f9f9f9;
+	background-color:#666666;
+}
+
+.GoToArrow
+{
+	vertical-align:middle;
+	cursor:pointer;
+}
+.GoToText{ width:40px;}

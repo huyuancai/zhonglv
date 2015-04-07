@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luoyang.zhonglv.dao.IVisaTypeDAO">
+
+	<resultMap type="com.luoyang.zhonglv.dto.VisaTypeDTO" id="VisaType">
+		<id column="type_id" property="typeId"/>
+		<result column="type_name" property="typeName"/>
+	</resultMap>
+
+	<select id="getAllVisaType" resultMap="VisaType">
+		SELECT
+			vt.type_id,
+			vt.type_name
+		FROM
+			zl_visa_type vt
+		ORDER BY
+			vt.type_id
+		DESC	
+	</select>
+	
+	<select id="getVisaTypeNameById" resultType="java.lang.String">
+		SELECT
+			vt.type_name
+		FROM
+			zl_visa_type vt
+		WHERE
+			vt.type_id = #{typeId}
+	</select>
+	
+	<insert id="addVisaType" parameterType="java.lang.String">
+		INSERT INTO
+			zl_visa_type(type_name)
+		VALUES(
+			#{typeName}
+		) 
+	</insert>
+	
+	<update id="updateVisaType" parameterType="java.util.Map">
+		UPDATE
+			zl_visa_type
+		SET
+			type_name = #{typeName}
+		WHERE
+			type_id = #{typeId}
+	</update>
+	
+	<delete id="deleteVisaType" parameterType="java.lang.Long">
+		DELETE FROM 
+			zl_visa_type 
+		WHERE
+			type_id = #{typeId}
+	</delete>
+	
+</mapper>

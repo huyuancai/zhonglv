@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luoyang.zhonglv.dao.IVisaCityDAO">
+
+	<resultMap type="com.luoyang.zhonglv.dto.VisaCityDTO" id="VisaCity">
+		<id column="city_id" property="cityId"/>
+		<result column="city_name" property="cityName"/>
+	</resultMap>
+
+	<select id="getAllVisaCity" resultMap="VisaCity">
+		SELECT
+			vc.city_id,
+			vc.city_name
+		FROM
+			zl_visa_city vc
+		ORDER BY
+			vc.city_id
+		DESC	
+	</select>
+	
+	<select id="getVisaCityNameById" resultType="java.lang.String">
+		SELECT
+			vc.city_name
+		FROM
+			zl_visa_city vc
+		WHERE
+			vc.city_id = #{cityId}
+	</select>
+	
+	<insert id="addVisaCity" parameterType="java.lang.String">
+		INSERT INTO
+			zl_visa_city(city_name)
+		VALUES(
+			#{cityName}
+		) 
+	</insert>
+	
+	<update id="updateVisaCity" parameterType="java.util.Map">
+		UPDATE
+			zl_visa_city
+		SET
+			city_name = #{cityName}
+		WHERE
+			city_id = #{cityId}
+	</update>
+	
+	<delete id="deleteVisaCity" parameterType="java.lang.Long">
+		DELETE FROM 
+			zl_visa_city 
+		WHERE
+			city_id = #{cityId}
+	</delete>
+	
+</mapper>

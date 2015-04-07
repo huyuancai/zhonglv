@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luoyang.zhonglv.dao.IRouteTopicsDAO">
+
+	<resultMap type="com.luoyang.zhonglv.dto.RouteTopicsDTO" id="RouteTopics">
+		<id column="route_id" property="routeId"/>
+		<id column="topics_id" property="topicsId"/>
+	</resultMap>
+
+	
+	<insert id="addRouteTopics" parameterType="java.util.List">
+		INSERT INTO
+			zl_route_topics
+		VALUES
+			<foreach collection="list" item="routeTopics" separator=",">
+			    (#{routeTopics.routeId},#{routeTopics.topicsId})
+			</foreach>
+	</insert>
+	
+	<delete id="deleteRouteTopicsByRouteId" parameterType="java.lang.Long">
+		DELETE FROM 
+			zl_route_topics 
+		WHERE
+			route_id = #{routeId}
+	</delete>
+	
+	<delete id="deleteRouteTopicsByTopicsId" parameterType="java.lang.Long">
+		DELETE FROM 
+			zl_route_topics 
+		WHERE
+			topics_id = #{topicsId}
+	</delete>
+	
+	<select id="getRouteTopicsByRouteId" parameterType="java.lang.Long" resultMap="RouteTopics">
+		SELECT
+			rt.route_id,
+			rt.topics_id
+		FROM
+			zl_route_topics rt
+		WHERE
+			rt.route_id = #{routeId}
+	</select>
+	
+</mapper>

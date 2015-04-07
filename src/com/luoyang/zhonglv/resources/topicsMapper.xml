@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luoyang.zhonglv.dao.ITopicsDAO">
+
+	<resultMap type="com.luoyang.zhonglv.dto.TopicsDTO" id="Topics">
+		<id column="topics_id" property="topicsId"/>
+		<result column="topics_name" property="topicsName"/>
+	</resultMap>
+
+	<select id="getAllTopics" resultMap="Topics">
+		SELECT
+			rt.topics_id,
+			rt.topics_name
+		FROM
+			zl_topics rt
+		ORDER BY
+			rt.topics_id
+		ASC	
+	</select>
+	
+	<insert id="addTopics" parameterType="java.lang.String">
+		INSERT INTO
+			zl_topics(topics_name)
+		VALUES(
+			#{topicsName}
+		) 
+	</insert>
+	
+	<update id="updateTopics" parameterType="java.util.Map">
+		UPDATE
+			zl_topics
+		SET
+			topics_name = #{topicsName}
+		WHERE
+			topics_id = #{topicsId}
+	</update>
+	
+	<delete id="deleteTopics" parameterType="java.lang.Long">
+		DELETE FROM 
+			zl_topics 
+		WHERE
+			topics_id = #{topicsId}
+	</delete>
+	
+	<select id="getTopicsNameById" parameterType="java.lang.Long" resultType="java.lang.String">
+		SELECT
+			rt.topics_name
+		FROM
+			zl_topics rt
+		WHERE
+			rt.topics_id = #{topicsId}
+	</select>
+	
+</mapper>

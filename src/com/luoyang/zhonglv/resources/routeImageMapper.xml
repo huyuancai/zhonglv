@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luoyang.zhonglv.dao.IRouteImageDAO">
+
+	<resultMap type="com.luoyang.zhonglv.dto.RouteImageDTO" id="RouteImage">
+		<id column="image_id" property="imageId"/>
+		<result column="route_id" property="routeId"/>
+		<result column="image_path" property="imagePath"/>
+		<result column="image_alias" property="imageAlias"/>
+	</resultMap>
+	
+	<insert id="addRouteImages" parameterType="java.util.List">
+		INSERT INTO 
+			zl_route_image(
+				route_id,
+				image_path,
+				image_alias
+			)
+		VALUES
+			<foreach collection="list" item="routeImage" separator=",">
+			    (#{routeImage.routeId},#{routeImage.imagePath},#{routeImage.imageAlias})
+			</foreach>
+	</insert>
+	
+	<select id="getRouteImagesByRouteId" resultMap="RouteImage" parameterType="java.lang.Long">
+	    SELECT 
+	    	ri.image_id,
+	    	ri.route_id,
+	    	ri.image_path,
+	    	ri.image_alias 
+	    FROM 
+	    	zl_route_image ri
+	    WHERE
+	    	ri.route_id = #{routeId}
+	</select>
+	
+	<delete id="deleteRouteImageByImageId" parameterType="java.lang.Long">
+	    DELETE FROM
+	    	zl_route_image
+	    WHERE
+	    	image_id = #{imageId}
+	</delete>
+	
+	<delete id="deleteRouteImageByRouteId" parameterType="java.lang.Long">
+	    DELETE FROM
+	    	zl_route_image
+	    WHERE
+	    	route_id = #{routeId}
+	</delete>
+	
+	<delete id="deleteRouteImageByRouteIds" parameterType="java.util.List">
+	    DELETE FROM
+	    	zl_route_image
+	    WHERE
+	    	route_id
+	    IN
+	    	<foreach collection="list" item="routeId" open="(" separator="," close=")">
+			    #{routeId}
+			</foreach>
+	</delete>
+	
+	<select id="getImagePathByImageId" parameterType="java.lang.Long" resultType="java.lang.String">
+	    SELECT
+	    	image_path
+	    FROM
+	    	zl_route_image
+	    WHERE
+	    	image_id = #{imageId}
+	</select>
+</mapper>

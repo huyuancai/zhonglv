@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luoyang.zhonglv.dao.IVisaCountryDAO">
+
+	<resultMap type="com.luoyang.zhonglv.dto.VisaCountryDTO" id="VisaCountry">
+		<id column="country_id" property="countryId"/>
+		<result column="country_name" property="countryName"/>
+	</resultMap>
+
+	<select id="getAllVisaCountry" resultMap="VisaCountry">
+		SELECT
+			vc.country_id,
+			vc.country_name
+		FROM
+			zl_visa_country vc
+		ORDER BY
+			vc.country_id
+		DESC	
+	</select>
+	
+	<select id="getVisaCountryNameById" resultType="java.lang.String">
+		SELECT
+			vc.country_name
+		FROM
+			zl_visa_country vc
+		WHERE
+			vc.country_id = #{countryId}
+	</select>
+	
+	<insert id="addVisaCountry" parameterType="java.lang.String">
+		INSERT INTO
+			zl_visa_country(country_name)
+		VALUES(
+			#{countryName}
+		) 
+	</insert>
+	
+	<update id="updateVisaCountry" parameterType="java.util.Map">
+		UPDATE
+			zl_visa_country
+		SET
+			country_name = #{countryName}
+		WHERE
+			country_id = #{countryId}
+	</update>
+	
+	<delete id="deleteVisaCountry" parameterType="java.lang.Long">
+		DELETE FROM 
+			zl_visa_country 
+		WHERE
+			country_id = #{countryId}
+	</delete>
+	
+</mapper>

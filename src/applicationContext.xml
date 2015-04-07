@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+             http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+             http://www.springframework.org/schema/context
+             http://www.springframework.org/schema/context/spring-context-3.0.xsd
+             http://www.springframework.org/schema/tx
+             http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+             http://www.springframework.org/schema/aop
+             http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<!-- dao -->
+	<bean id="routeDAO" class="com.luoyang.zhonglv.dao.impl.RouteDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="routeImageDAO" class="com.luoyang.zhonglv.dao.impl.RouteImageDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="routeTypeDAO" class="com.luoyang.zhonglv.dao.impl.RouteTypeDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="topicsDAO" class="com.luoyang.zhonglv.dao.impl.TopicsDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="routeTopicsDAO" class="com.luoyang.zhonglv.dao.impl.RouteTopicsDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="userDAO" class="com.luoyang.zhonglv.dao.impl.UserDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="departureCityDAO" class="com.luoyang.zhonglv.dao.impl.DepartureCityDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="destinationCityDAO" class="com.luoyang.zhonglv.dao.impl.DestinationCityDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="sceneryDAO" class="com.luoyang.zhonglv.dao.impl.SceneryDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="visaDAO" class="com.luoyang.zhonglv.dao.impl.VisaDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="visaTypeDAO" class="com.luoyang.zhonglv.dao.impl.VisaTypeDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="visaCountryDAO" class="com.luoyang.zhonglv.dao.impl.VisaCountryDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="visaCityDAO" class="com.luoyang.zhonglv.dao.impl.VisaCityDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="tourismNewsDAO" class="com.luoyang.zhonglv.dao.impl.TourismNewsDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="tourismStrategyDAO" class="com.luoyang.zhonglv.dao.impl.TourismStrategyDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- service -->
+	<bean id="routeService" class="com.luoyang.zhonglv.service.impl.RouteServiceImpl"
+		scope="singleton">
+		<property name="routeDAO" ref="routeDAO" />
+		<property name="routeTopicsDAO" ref="routeTopicsDAO" />
+		<property name="routeImageDAO" ref="routeImageDAO" />
+	</bean>
+	<bean id="routeImageService" class="com.luoyang.zhonglv.service.impl.RouteImageServiceImpl"
+		scope="singleton">
+		<property name="routeImageDAO" ref="routeImageDAO" />
+	</bean>
+	<bean id="routeTypeService" class="com.luoyang.zhonglv.service.impl.RouteTypeServiceImpl"
+		scope="singleton">
+		<property name="routeTypeDAO" ref="routeTypeDAO" />
+		<property name="routeDAO" ref="routeDAO" />
+	</bean>
+	<bean id="topicsService" class="com.luoyang.zhonglv.service.impl.TopicsServiceImpl"
+		scope="singleton">
+		<property name="topicsDAO" ref="topicsDAO" />
+		<property name="routeTopicsDAO" ref="routeTopicsDAO" />
+	</bean>
+	<bean id="userService" class="com.luoyang.zhonglv.service.impl.UserServiceImpl"
+		scope="singleton">
+		<property name="userDAO" ref="userDAO" />
+	</bean>
+	<bean id="departureCityService" class="com.luoyang.zhonglv.service.impl.DepartureCityServiceImpl"
+		scope="singleton">
+		<property name="departureCityDAO" ref="departureCityDAO" />
+	</bean>
+	<bean id="destinationCityService" class="com.luoyang.zhonglv.service.impl.DestinationCityServiceImpl"
+		scope="singleton">
+		<property name="destinationCityDAO" ref="destinationCityDAO" />
+	</bean>
+	<bean id="sceneryService" class="com.luoyang.zhonglv.service.impl.SceneryServiceImpl"
+		scope="singleton">
+		<property name="sceneryDAO" ref="sceneryDAO" />
+	</bean>
+	<bean id="visaService" class="com.luoyang.zhonglv.service.impl.VisaServiceImpl"
+		scope="singleton">
+		<property name="visaDAO" ref="visaDAO" />
+	</bean>
+	<bean id="visaTypeService" class="com.luoyang.zhonglv.service.impl.VisaTypeServiceImpl"
+		scope="singleton">
+		<property name="visaTypeDAO" ref="visaTypeDAO" />
+	</bean>
+	<bean id="visaCountryService" class="com.luoyang.zhonglv.service.impl.VisaCountryServiceImpl"
+		scope="singleton">
+		<property name="visaCountryDAO" ref="visaCountryDAO" />
+	</bean>
+	<bean id="visaCityService" class="com.luoyang.zhonglv.service.impl.VisaCityServiceImpl"
+		scope="singleton">
+		<property name="visaCityDAO" ref="visaCityDAO" />
+	</bean>
+	<bean id="tourismNewsService" class="com.luoyang.zhonglv.service.impl.TourismNewsServiceImpl"
+		scope="singleton">
+		<property name="tourismNewsDAO" ref="tourismNewsDAO" />
+	</bean>
+	<bean id="tourismStrategyService" class="com.luoyang.zhonglv.service.impl.TourismStrategyServiceImpl"
+		scope="singleton">
+		<property name="tourismStrategyDAO" ref="tourismStrategyDAO" />
+	</bean>
+
+	<!-- action -->
+	<bean id="homePageAction" class="com.luoyang.zhonglv.action.HomePageAction"
+		scope="singleton">
+		<property name="routeService" ref="routeService" />
+		<property name="routeTypeService" ref="routeTypeService" />
+		<property name="sceneryService" ref="sceneryService" />
+		<property name="visaService" ref="visaService" />
+		<property name="tourismNewsService" ref="tourismNewsService" />
+		<property name="tourismStrategyService" ref="tourismStrategyService" />
+	</bean>
+	<bean id="routeAction" class="com.luoyang.zhonglv.action.RouteAction"
+		scope="request">
+		<property name="routeService" ref="routeService" />
+		<property name="routeTypeService" ref="routeTypeService" />
+		<property name="departureCityService" ref="departureCityService" />
+		<property name="topicsService" ref="topicsService" />
+		<property name="destinationCityService" ref="destinationCityService" />
+		<property name="pageVO" ref="pageVO"/>
+	</bean>
+	<bean id="routeTypeAction" class="com.luoyang.zhonglv.action.RouteTypeAction"
+		scope="singleton">
+		<property name="routeTypeService" ref="routeTypeService" />
+	</bean>
+	<bean id="loginAction" class="com.luoyang.zhonglv.action.admin.login.LoginAction"
+		scope="session">
+		<property name="userService" ref="userService" />
+	</bean>
+	<bean id="pageVO" class="com.luoyang.zhonglv.vo.PageVO" scope="prototype"></bean>
+	<bean id="routeVO" class="com.luoyang.zhonglv.vo.RouteVO" scope="prototype"></bean>
+	<bean id="sceneryVO" class="com.luoyang.zhonglv.vo.SceneryVO" scope="prototype"></bean>
+	<bean id="visaVO" class="com.luoyang.zhonglv.vo.VisaVO" scope="prototype"></bean>
+	<bean id="tourismStrategyVO" class="com.luoyang.zhonglv.vo.TourismStrategyVO" scope="prototype"></bean>
+	<bean id="tourismNewsVO" class="com.luoyang.zhonglv.vo.TourismNewsVO" scope="prototype"></bean>
+	<bean id="routeManagerAction" class="com.luoyang.zhonglv.action.admin.route.RouteManagerAction" scope="request" >
+		<property name="routeService" ref="routeService" />
+		<property name="routeTypeService" ref="routeTypeService" />
+		<property name="departureCityService" ref="departureCityService" />
+		<property name="destinationCityService" ref="destinationCityService" />
+		<property name="topicsService" ref="topicsService" />
+		<property name="pageVO" ref="pageVO"/>
+		<property name="routeVO" ref="routeVO"/>
+	</bean>
+	<bean id="routeTypeManagerAction" class="com.luoyang.zhonglv.action.admin.route.RouteTypeManagerAction" scope="singleton" >
+		<property name="routeTypeService" ref="routeTypeService" />
+	</bean>
+	<bean id="topicsManagerAction" class="com.luoyang.zhonglv.action.admin.route.TopicsManagerAction" scope="singleton" >
+		<property name="topicsService" ref="topicsService" />
+	</bean>
+	<bean id="destinationCityAction" class="com.luoyang.zhonglv.action.admin.route.DestinationCityAction" scope="singleton" >
+		<property name="destinationCityService" ref="destinationCityService" />
+	</bean>
+	<bean id="departureCityAction" class="com.luoyang.zhonglv.action.admin.route.DepartureCityAction" scope="singleton" >
+		<property name="departureCityService" ref="departureCityService" />
+	</bean>
+	<bean id="sceneryManagerAction" class="com.luoyang.zhonglv.action.admin.scenery.SceneryManagerAction" scope="request" >
+		<property name="sceneryService" ref="sceneryService" />
+		<property name="destinationCityService" ref="destinationCityService" />
+		<property name="pageVO" ref="pageVO"/>
+		<property name="sceneryVO" ref="sceneryVO"/>
+	</bean>
+	<bean id="visaManagerAction" class="com.luoyang.zhonglv.action.admin.visa.VisaManagerAction" scope="request" >
+		<property name="visaService" ref="visaService" />
+		<property name="visaTypeService" ref="visaTypeService" />
+		<property name="visaCountryService" ref="visaCountryService" />
+		<property name="visaCityService" ref="visaCityService" />
+		<property name="pageVO" ref="pageVO"/>
+		<property name="visaVO" ref="visaVO"/>
+	</bean>
+	<bean id="visaCountryManagerAction" class="com.luoyang.zhonglv.action.admin.visa.VisaCountryManagerAction" scope="request" >
+		<property name="visaCountryService" ref="visaCountryService" />
+	</bean>
+	<bean id="visaCityManagerAction" class="com.luoyang.zhonglv.action.admin.visa.VisaCityManagerAction" scope="request" >
+		<property name="visaCityService" ref="visaCityService" />
+	</bean>
+	<bean id="visaTypeManagerAction" class="com.luoyang.zhonglv.action.admin.visa.VisaTypeManagerAction" scope="request" >
+		<property name="visaTypeService" ref="visaTypeService" />
+	</bean>
+	<bean id="tourismNewsManagerAction" class="com.luoyang.zhonglv.action.admin.news.TourismNewsManagerAction" scope="request" >
+		<property name="tourismNewsService" ref="tourismNewsService" />
+		<property name="tourismNewsVO" ref="tourismNewsVO"/>
+		<property name="pageVO" ref="pageVO"/>
+	</bean>
+	<bean id="tourismStrategyManagerAction" class="com.luoyang.zhonglv.action.admin.strategy.TourismStrategyManagerAction" scope="request" >
+		<property name="tourismStrategyService" ref="tourismStrategyService" />
+		<property name="tourismStrategyVO" ref="tourismStrategyVO"/>
+		<property name="pageVO" ref="pageVO"/>
+	</bean>
+	<bean id="tourismStrategyAction" class="com.luoyang.zhonglv.action.TourismStrategyAction" scope="request" >
+		<property name="tourismStrategyService" ref="tourismStrategyService" />
+		<property name="pageVO" ref="pageVO"/>
+	</bean>
+	<bean id="tourismNewsAction" class="com.luoyang.zhonglv.action.TourismNewsAction" scope="request" >
+		<property name="tourismNewsService" ref="tourismNewsService" />
+		<property name="pageVO" ref="pageVO"/>
+	</bean>
+	<bean id="sceneryAction" class="com.luoyang.zhonglv.action.SceneryAction" scope="request" >
+		<property name="sceneryService" ref="sceneryService" />
+		<property name="pageVO" ref="pageVO"/>
+	</bean>
+	<bean id="visaAction" class="com.luoyang.zhonglv.action.VisaAction" scope="request" >
+		<property name="visaService" ref="visaService" />
+		<property name="visaCityService" ref="visaCityService" />
+		<property name="visaCountryService" ref="visaCountryService" />
+		<property name="visaTypeService" ref="visaTypeService" />
+		<property name="pageVO" ref="pageVO"/>
+		<property name="visaVO" ref="visaVO"/>
+	</bean>
+	<bean id="fileUploadAction" class="com.luoyang.zhonglv.action.upload.FileUploadAction"
+		scope="singleton">
+	</bean>
+	<bean id="routeImageAction" class="com.luoyang.zhonglv.action.admin.route.RouteImageAction"
+		scope="session">
+		<property name="routeImageService" ref="routeImageService" />
+	</bean>
+</beans> 

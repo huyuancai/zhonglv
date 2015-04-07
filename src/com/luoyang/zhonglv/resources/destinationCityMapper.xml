@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luoyang.zhonglv.dao.IDestinationCityDAO">
+
+	<resultMap type="com.luoyang.zhonglv.dto.DestinationCityDTO" id="DestinationCity">
+		<id column="des_city_id" property="desCityId"/>
+		<result column="des_city_name" property="desCityName"/>
+	</resultMap>
+	
+	<select id="getAllDestinationCity" resultMap="DestinationCity">
+		SELECT 
+			des_city_id,
+			des_city_name
+		FROM
+			zl_destination_city
+	</select>
+	
+	<insert id="addDestinationCity" parameterType="java.lang.String">
+		INSERT into
+			zl_destination_city(
+				des_city_name
+			)
+		VALUES(
+			#{desCityName}
+		)
+	</insert>
+	
+	<update id="updateDestinationCity" parameterType="java.util.Map">
+		UPDATE 
+			zl_destination_city
+		SET
+			des_city_name = #{desCityName}
+		WHERE
+			des_city_id = #{desCityId}
+	</update>
+	
+	<delete id="deleteDestinationCity" parameterType="java.lang.Long">
+		DELETE FROM 
+			zl_destination_city	    
+		WHERE
+			des_city_id = #{desCityId}
+	</delete>
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luoyang.zhonglv.dao.IRouteTypeDAO">
+
+	<resultMap type="com.luoyang.zhonglv.dto.RouteTypeDTO" id="RouteType">
+		<id column="route_type_id" property="routeTypeId"/>
+		<result column="route_type_name" property="routeTypeName"/>
+	</resultMap>
+
+	<select id="getAllRouteType" resultMap="RouteType">
+		SELECT
+			rt.route_type_id,
+			rt.route_type_name
+		FROM
+			zl_route_type rt
+		ORDER BY
+			rt.route_type_id
+		ASC	
+	</select>
+	
+	<insert id="addRouteType" parameterType="java.lang.String">
+		INSERT INTO
+			zl_route_type(route_type_name)
+		VALUES(
+			#{routeTypeName}
+		) 
+	</insert>
+	
+	<update id="updateRouteType" parameterType="java.util.Map">
+		UPDATE
+			zl_route_type
+		SET
+			route_type_name = #{routeTypeName}
+		WHERE
+			route_type_id = #{routeTypeId}
+	</update>
+	
+	<delete id="deleteRouteType" parameterType="java.lang.Long">
+		DELETE FROM 
+			zl_route_type 
+		WHERE
+			route_type_id = #{routeTypeId}
+	</delete>
+	
+	<select id="getRouteTypeNameById" parameterType="java.lang.Long" resultType="java.lang.String">
+		SELECT
+			rt.route_type_name
+		FROM
+			zl_route_type rt
+		WHERE
+			rt.route_type_id = #{routeTypeId}
+	</select>
+	
+</mapper>
