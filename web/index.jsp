@@ -1,6 +1,32 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page language="java" pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <s:include value="head.jsp"/>
+<script type="text/javascript">
+(function($) {
+    jQuery.fn.ellipsis = function(maxwidth) {                        
+        this.each(function() {        
+            if ($(this).text().length > maxwidth) {
+                $(this).text($(this).text().trim().substring(0, maxwidth));
+                $(this).html($(this).html() + '...');
+            }
+        });
+    };
+})(jQuery);
+
+$().ready(function(){
+	var route_name_price = $(".route_name_price");
+	route_name_price.each(function(idx,obj){
+		var value = $(obj).text().trim();
+		var entryLen=value.length;
+		var cnChar=value.match(/[^\x00-\x80]/g);//利用match方法检索出中文字符并返回一个存放中文的数组
+		if( cnChar!=null ){//表示是中文
+			$(obj).ellipsis(10);
+		}else{
+			$(obj).ellipsis(20);
+		}
+	});
+});
+</script>
 <div class="container">
 	<table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
 	  <tbody><tr>	   	    
@@ -40,24 +66,26 @@
 							        		<img src="<s:url value="%{#routeVO.getRouteThumb()}"/>" width="200" height="119" border="0" title="<s:property value="#routeVO.getRouteTitle()"/>"/>
 							        	</a>
 							        	<p>
-							        		<a target="_blank" href="/zhonglv/RouteAction!getRouteById.action?routeId=<s:property value="#routeVO.getRouteId()"/>">
+							        		<a target="_blank" class="route_name_price" href="/zhonglv/RouteAction!getRouteById.action?routeId=<s:property value="#routeVO.getRouteId()"/>" title="<s:property value="#routeVO.getRouteName()"/>">
 								        		<s:property value="#routeVO.getRouteName()"/>
-								        		<span style="color:#C00;font-weight:bold;float:right;margin-right:5px;">
-													<s:property value="#routeVO.getRoutePrice()"/>元
-												</span>
 							        		</a>
+							        		<span style="color:#C00;font-weight:bold;float:right;margin-right:5px;">
+												<s:property value="#routeVO.getRoutePrice()"/>元
+											</span>
 							        	</p>
 								    </div>
 								    <s:set name="isFirstRoute" value="false" scope="request"/>
 							    </s:if>
 							    <s:else>
 									<li>
-										<a target="_blank" href="/zhonglv/RouteAction!getRouteById.action?routeId=<s:property value="#routeVO.getRouteId()"/>">
-											<s:property value="#routeVO.getRouteName()"/>
+										<p>
+											<a target="_blank" class="route_name_price" href="/zhonglv/RouteAction!getRouteById.action?routeId=<s:property value="#routeVO.getRouteId()"/>" title="<s:property value="#routeVO.getRouteName()"/>">
+												<s:property value="#routeVO.getRouteName()"/>
+											</a>
 											<span style="color:#C00;font-weight:bold;float:right;margin-right:5px;">
 												<s:property value="#routeVO.getRoutePrice()"/>元
 											</span>
-										</a>
+										</p>
 									</li>							    	
 							    </s:else>
 		            		</s:if>

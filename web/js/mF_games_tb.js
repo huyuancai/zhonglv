@@ -3,7 +3,7 @@ myFocus.pattern.extend({//*********************games******************
 		var $focus=$(settings);
 		var $picBox=$focus.find('.pic');
 		var $picList=$picBox.find('li');
-		var $txtList=$focus.addListTxt().find('li');
+		//var $txtList=$focus.addListTxt().find('li');
 		var $thumbBox=$focus.addListThumb();
 		var $thumbUl=$thumbBox.find('ul');
 		var $thumbList=$thumbUl.find('li');
@@ -16,15 +16,15 @@ myFocus.pattern.extend({//*********************games******************
 		$thumbUl.css({width:thuWidth*n});
 		$thumbList.each(function(){this.style.width=thuWidth+'px'});
 		$thumbBox.find('img').each(function(){this.style.height=(p.thumbHeight-13*2)+'px';});//10px margin+3px border
-		$txtList.each(function(){this.style.bottom=p.thumbHeight+'px'});
+		//$txtList.each(function(){this.style.bottom=p.thumbHeight+'px'});
 		//PLAY
 		$focus.play(function(i){
 			$picList[i].style.display='none';
-			$txtList[i].style.display='none';
+			//$txtList[i].style.display='none';
 			$thumbList[i].className = '';
 		},function(i){
 			$picList.eq(i).fadeIn();
-			$txtList[i].style.display='block';
+			//$txtList[i].style.display='block';
 			$thumbList.scrollTo(i)[i].className = 'current';
 		});
 		//Control

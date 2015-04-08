@@ -1,6 +1,7 @@
 package com.luoyang.zhonglv.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
@@ -51,4 +52,12 @@ public interface IRouteImageDAO {
 	 * @throws DataAccessException
 	 */
 	public String getImagePathByImageId( Long imageId ) throws DataAccessException;
+	
+	/**
+	 * 根据图片ID修改图片别名
+	 * @param paramMap
+	 * @return
+	 * @throws DataAccessException
+	 */
+	public boolean updateImageAlias( Map<String, Object> paramMap ) throws DataAccessException;
 }

@@ -38,6 +38,7 @@ public class RouteImageAction extends BaseAction {
 	private String[] imageNames;
 	private Long routeId;
 	private Long imageId;
+	private String imageAlias;
 
 	@Override
 	public String execute() throws Exception {
@@ -77,7 +78,8 @@ public class RouteImageAction extends BaseAction {
 							resultVO.setErrMsg( code.getErrMsg() );
 							return RET_JSON;
 						}
-						imageMap.put( UPLOAD_FILE_PATH + File.separator + newFileName + imageSuffix, imageNames[i] );
+						imageMap.put( UPLOAD_FILE_PATH + File.separator + newFileName + imageSuffix, "第" + ( i + 1 )
+								+ "张" );
 					}
 					resultVO.setCode( RET_CODE.S90000.getCode() );
 					return RET_JSON;
@@ -125,8 +127,8 @@ public class RouteImageAction extends BaseAction {
 			return LOGIN;
 		}
 	}
-	
-	public String ajaxDeleteRouteImage(){
+
+	public String ajaxDeleteRouteImage() {
 		if ( super.isLogin() ) {
 			if ( null != imageId ) {
 				String imagePath = routeImageService.getImagePathByImageId( imageId );
@@ -144,7 +146,28 @@ public class RouteImageAction extends BaseAction {
 			resultVO.setCode( RET_CODE.E92121.getCode() );
 			resultVO.setCode( RET_CODE.E92121.getErrMsg() );
 			return RET_JSON;
-		}else{
+		}
+		else {
+			return LOGIN;
+		}
+	}
+
+	public String ajaxUpdateImageAlias() {
+		if ( super.isLogin() ) {
+			if ( null != imageId && StringUtils.isNotEmpty( imageAlias ) ) {
+				Map<String, Object> paramMap = new HashMap<String, Object>();
+				paramMap.put( "imageId", imageId );
+				paramMap.put( "imageAlias", imageAlias );
+				if ( routeImageService.updateImageAlias( paramMap ) ) {
+					resultVO.setCode( RET_CODE.S90000.getCode() );
+					return RET_JSON;
+				}
+			}
+			resultVO.setCode( RET_CODE.E92122.getCode() );
+			resultVO.setCode( RET_CODE.E92122.getErrMsg() );
+			return RET_JSON;
+		}
+		else {
 			return LOGIN;
 		}
 	}
@@ -230,5 +253,13 @@ public class RouteImageAction extends BaseAction {
 	public void setImageId( Long imageId ) {
 		this.imageId = imageId;
 	}
-	
+
+	public String getImageAlias() {
+		return imageAlias;
+	}
+
+	public void setImageAlias( String imageAlias ) {
+		this.imageAlias = imageAlias;
+	}
+
 }

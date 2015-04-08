@@ -36,7 +36,6 @@
 <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
   <tbody><tr>
     <td width="466" valign="top">
-      <div class="mF_games_tb_wrap">
       <div id="myFocus" class=" mF_games_tb mF_games_tb_myFocus">
         <div class="pic">
           <!--图片列表-->
@@ -54,6 +53,7 @@
 			            <li style="display: block; opacity: 1;">
 			            	<a href="<s:url value="%{#routeImageVO.getImagePath()}"/>" target="_blank">
 			            		<img src="<s:url value="%{#routeImageVO.getImagePath()}"/>" thumb="" title="<s:property value="#routeImageVO.getImageAlias()"/>" width="450" height="280">
+			            		<%-- <s:property value="#routeImageVO.getImageAlias()"/> --%>
 			            	</a>
 			            </li>
 	          		</s:if>
@@ -61,6 +61,7 @@
 	          			<li style="display: none; opacity: 1;">
 			            	<a href="<s:url value="%{#routeImageVO.getImagePath()}"/>" target="_blank">
 			            		<img src="<s:url value="%{#routeImageVO.getImagePath()}"/>" thumb="" title="<s:property value="#routeImageVO.getImageAlias()"/>" width="450" height="280">
+			            		<%-- <s:property value="#routeImageVO.getImageAlias()"/> --%>
 			            	</a>
 			            </li>
 	          		</s:else>
@@ -68,50 +69,7 @@
           	</s:else>
           </ul>
         </div>
-      <div class="txt">
-      	<ul>
-      		<s:if test="#request.routeVO.routeImageVOs==null">
-	            <li style="bottom: 86px; display: block;">
-	            	<a href="<s:url value="/images/nophoto.jpg"/>" target="_blank">暂无图片</a>
-	            	<p>null</p><b></b>
-	            </li>
-          	</s:if>
-          	<s:else>
-	      		<s:iterator var="routeImageVO" value="#request.routeVO.routeImageVOs" status="s">
-	      			<s:if test="#s.index==0">
-			            <li style="bottom: 86px; display: block;">
-			            	<a href="<s:url value="%{#routeImageVO.getImagePath()}"/>" target="_blank"><s:property value="#routeImageVO.getImageAlias()"/></a>
-			            	<p>null</p><b></b>
-			            </li>
-	      			</s:if>
-	      			<s:else>
-			            <li style="bottom: 86px; display: none;">
-			            	<a href="<s:url value="%{#routeImageVO.getImagePath()}"/>" target="_blank"><s:property value="#routeImageVO.getImageAlias()"/></a>
-			            	<p>null</p><b></b>
-			            </li>
-	      			</s:else>
-	          	</s:iterator>
-          	</s:else>
-      	</ul>
-      </div>
-      <div class="thumb" style="width: 418px; height: 86px; left: 16px;">
-      	<ul style="width: 420px; left: 0px;">
-      		<s:iterator var="routeImageVO" value="#request.routeVO.routeImageVOs">
-      			<li class="current" style="width: 105px;">
-	      			<a><img src="<s:url value="%{#routeImageVO.getImagePath()}"/>" style="height: 60px;"></a>
-	      			<b></b>
-      			</li>
-          	</s:iterator>
-      	</ul>
-      </div>
-      <div class="prev">
-      	<a href="javascript:;">‹</a>
-      </div>
-      <div class="next">
-      	<a href="javascript:;">›</a>
-      </div>
      </div>
-    </div>
     </td>
     <td width="7"></td>
     <td valign="top">

@@ -1,6 +1,7 @@
 package com.luoyang.zhonglv.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
@@ -48,6 +49,10 @@ public class RouteImageServiceImpl extends BaseService implements IRouteImageSer
 	
 	public String getImagePathByImageId( Long imageId ) throws DataAccessException {
 		return routeImageDAO.getImagePathByImageId( imageId );
+	}
+	
+	public boolean updateImageAlias( Map<String, Object> paramMap ) throws DataAccessException {
+		return routeImageDAO.updateImageAlias( paramMap );
 	}
 
 	// -------------------------getter/setter-------------------------//

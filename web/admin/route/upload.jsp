@@ -18,7 +18,7 @@
   	.ptlist h2{ text-align:center; margin:0px; padding:0px; font-size:12px; line-height:22px;}
   	.ptlist p{ margin:0px; padding:0px; text-align:center;}
 </style>
-<script type="text/javascript" src="<s:url value="/js/jquery-1.4.4.min.js"/>"></script>
+<script type="text/javascript" src="<s:url value="/js/jquery-1.8.0.min.js"/>"></script>
 <script type="text/javascript" src="<s:url value="/admin/dropzone/dropzone.js"/>"></script>
 <script type="text/javascript">
 	//Dropzone的初始化，myDropzone为form的id
@@ -33,7 +33,7 @@
         autoProcessQueue: true,
         //文件最大上传大小(MB)
         maxFilesize: 3,
-        dictDefaultMessage: "文件拖放到此处进行上传",
+        dictDefaultMessage: "文件拖放到此处可进行批量上传",
         paramName: "image",
         //允许上传多个照片
         uploadMultiple: true,
@@ -66,25 +66,67 @@
         }
     };
 	
-	function deleteImage(imageId){
-		if (confirm("确定删除吗？")) {
-			$.ajax({
-				url:"/zhonglv/RouteImageAction!ajaxDeleteRouteImage.action",
-				type:"post",
-				dataType:"json",
-				data:{
-					imageId:imageId
-				},
-				success:function(data){
-					if ( data.code == 90000 ) {
-						window.location.reload();
-					}else{
-						alert(data.errMsg);
-					}
+	$().ready(function(){
+		$("input[name='routeImageEdit']").each(function(idx,obj){
+			$(obj).on("click",function(){
+				var okBtn = $(obj);
+				var cancelBtn = $(obj).next();
+				var imageId = $(obj).attr("imageId");
+				var h2 = $(obj).parent().parent().find("h2");
+				okBtn.unbind("click");
+				cancelBtn.unbind("click");
+				h2.before("<input type='text' name='imageAlias' value='"+ h2.text() +"' style='width:120px;' length='50'/>");
+				var $inputImageAlias = h2.prev("input");
+				okBtn.val("确定");
+				cancelBtn.val("取消");
+				okBtn.on("click",function(){
+					$.ajax({
+						url:"/zhonglv/RouteImageAction!ajaxUpdateImageAlias.action",
+						type:"post",
+						dataType:"json",
+						data:{
+							imageId:imageId,
+							imageAlias:$inputImageAlias.val()
+						},
+						success:function(data){
+							if ( data.code == 90000 ) {
+								window.location.reload();
+							}else{
+								alert(data.errMsg);
+							}
+						}
+					});
+				});
+				cancelBtn.on("click",function(){
+					window.location.reload();
+				});
+				h2.remove();
+			});
+		});
+		
+		$("input[name='routeImageDelete']").each(function(idx,obj){
+			$(obj).on("click",function(){
+				if (confirm("确定删除吗？")) {
+					$.ajax({
+						url:"/zhonglv/RouteImageAction!ajaxDeleteRouteImage.action",
+						type:"post",
+						dataType:"json",
+						data:{
+							imageId:$(obj).attr("imageId")
+						},
+						success:function(data){
+							if ( data.code == 90000 ) {
+								window.location.reload();
+							}else{
+								alert(data.errMsg);
+							}
+						}
+					});
 				}
 			});
-		}
-	}
+		});
+	});
+	
 </script>
 <title>Upload Image</title>
 </head>
@@ -111,8 +153,8 @@
 					</a>
 					<h2><s:property value="#routeImageVO.getImageAlias()"/></h2>
 					<p>     
-		          		<input type="submit" name="routeImageEdit" value="编辑" id="routeImageEdit">
-		          		<input type="submit" name="routeImageDelete" value="删除" onclick="deleteImage(<s:property value="#routeImageVO.getImageId()"/>)" id="routeImageDelete">
+		          		<input type="submit" name="routeImageEdit" value="编辑" id="routeImageEdit" imageId="<s:property value="#routeImageVO.getImageId()"/>">
+		          		<input type="submit" name="routeImageDelete" value="删除" id="routeImageDelete" imageId="<s:property value="#routeImageVO.getImageId()"/>">
 		          	</p>
 				</li>
 			</s:iterator>

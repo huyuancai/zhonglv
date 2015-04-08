@@ -70,4 +70,13 @@
 	    WHERE
 	    	image_id = #{imageId}
 	</select>
+	
+	<update id="updateImageAlias" parameterType="java.util.Map">
+		UPDATE 
+			zl_route_image
+		SET
+			image_alias = #{imageAlias}
+		WHERE
+			image_id = #{imageId}
+	</update>
 </mapper>
