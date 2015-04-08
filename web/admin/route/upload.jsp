@@ -75,7 +75,7 @@
 				var h2 = $(obj).parent().parent().find("h2");
 				okBtn.unbind("click");
 				cancelBtn.unbind("click");
-				h2.before("<input type='text' name='imageAlias' value='"+ h2.text() +"' style='width:120px;' length='50'/>");
+				h2.before("<input type='text' name='imageAlias' value='"+ h2.text() +"' style='width:120px;' maxlength='50'/>");
 				var $inputImageAlias = h2.prev("input");
 				okBtn.val("确定");
 				cancelBtn.val("取消");
