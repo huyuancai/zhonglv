@@ -12,13 +12,13 @@
 function logout(){
 	if (confirm("您确定要退出控制面板吗？")){
 		$.ajax({
-			url:"/zhonglv/LoginAction!ajaxLogout.action",
+			url:"LoginAction!ajaxLogout.action",
 			type:"post",
 			dataType: "json",
 			async:false,
 			success:function(data){
 				if (data.code == 90000 ) {
-					parent.location = "/zhonglv/admin/";
+					parent.location = "admin/";
 				}else{
 					alert(data.errMsg);
 					return false;

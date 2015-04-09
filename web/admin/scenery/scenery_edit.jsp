@@ -18,6 +18,7 @@
 <script type="text/javascript" src="<s:url value="/js/jquery-1.4.4.min.js"/>"></script>
 <script type="text/javascript" src="<s:url value="/jquery-easyui/jquery.easyui.min.js"/>"></script>
 <script type="text/javascript" src="<s:url value="/admin/js/ajaxfileupload.js"/>"></script>
+<script type="text/javascript" src="<s:url value="/js/htmlDecode.js"/>"></script>
 <script type="text/javascript">
 	$().ready(function(){
 		$("#markerPosition").click(function(){
@@ -70,7 +71,7 @@
 			data['sceneryVO.sceneryRecommend']=scenery_recommend;
 			$.ajax({
 				type:"post",
-				url:"/zhonglv/SceneryManagerAction!ajaxUpdateScenery.action",
+				url:"SceneryManagerAction!ajaxUpdateScenery.action",
 				async:false,
 				dataType:"json",
 				data:data,
@@ -107,7 +108,7 @@
 		}
 		
 		$.ajaxFileUpload({
-			url:"/zhonglv/FileUploadAction!ajaxUploadSceneryImage.action",
+			url:"FileUploadAction!ajaxUploadSceneryImage.action",
 			secureuri:false,
 			fileElementId:'image',
 			dataType: 'json',
@@ -146,14 +147,6 @@
 		}
 		$('#markerPositionMap').dialog('close');
 	}
-	
-	function HTMLDecode (text) { 
-		var temp = document.createElement("div"); 
-		temp.innerHTML = text; 
-		var output = temp.innerText || temp.textContent; 
-		temp = null; 
-		return output; 
-	} 
 	
 	function checkFileSuffix(suffix) {
 	    if (!suffix.match(/.jpg|.gif|.png|.bmp|.jpeg/i)) {

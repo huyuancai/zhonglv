@@ -19,7 +19,7 @@
 			}
 			
 			$.ajax({
-				url:"/zhonglv/VisaCountryManagerAction!ajaxAddVsiaCountry.action",
+				url:"VisaCountryManagerAction!ajaxAddVsiaCountry.action",
 				type:"post",
 				dataType:"json",
 				async:false,
@@ -59,7 +59,7 @@
 					return false;
 				}
 				$.ajax({
-					url:"/zhonglv/VisaCountryManagerAction!ajaxUpdateVisaCountry.action",
+					url:"VisaCountryManagerAction!ajaxUpdateVisaCountry.action",
 					type:"post",
 					dataType:"json",
 					async:false,
@@ -93,7 +93,7 @@
 				var obj = event.target;
 				var countryId = $(obj).parent().prev().prev().text();
 				$.ajax({
-					url:"/zhonglv/VisaCountryManagerAction!ajaxDeleteVisaCountry.action",
+					url:"VisaCountryManagerAction!ajaxDeleteVisaCountry.action",
 					type:"post",
 					dataType:"json",
 					async:false,

@@ -67,7 +67,7 @@
 			data['sceneryVO.sceneryRecommend']=scenery_recommend;
 			$.ajax({
 				type:"post",
-				url:"/zhonglv/SceneryManagerAction!ajaxAddScenery.action",
+				url:"SceneryManagerAction!ajaxAddScenery.action",
 				async:false,
 				dataType:"json",
 				data:data,
@@ -104,7 +104,7 @@
 		}
 		
 		$.ajaxFileUpload({
-			url:"/zhonglv/FileUploadAction!ajaxUploadSceneryImage.action",
+			url:"FileUploadAction!ajaxUploadSceneryImage.action",
 			secureuri:false,
 			fileElementId:'image',
 			dataType: 'json',

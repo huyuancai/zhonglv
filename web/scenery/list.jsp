@@ -10,7 +10,7 @@
         <div class="line_img" style="margin:5px 0px;">
         	<ul>
 	        	<s:iterator var="sceneryVO" value="#request.sceneryVOs">
-		            <li class="list"><a target="_blank" href="/zhonglv/SceneryAction!getSceneryById.action?sceneryId=<s:property value="#sceneryVO.getSceneryId()"/>"><img src="<s:url value="%{#sceneryVO.getSceneryThumb()}"/>" border="0" title="<s:property value="#sceneryVO.getSceneryName()"/>"></a><p><a href="/zhonglv/SceneryAction!getSceneryById.action?sceneryId=<s:property value="#sceneryVO.getSceneryId()"/>" title="<s:property value="#sceneryVO.getSceneryName()"/>"><s:property value="#sceneryVO.getSceneryName()"/></a></p><p><span class="price"><s:property value="#sceneryVO.getSceneryPrice()"/>元</span><!-- <a class="order" href="javascript:void(0);">预定</a> --></p></li>
+		            <li class="list"><a target="_blank" href="SceneryAction!getSceneryById.action?sceneryId=<s:property value="#sceneryVO.getSceneryId()"/>"><img src="<s:url value="%{#sceneryVO.getSceneryThumb()}"/>" border="0" title="<s:property value="#sceneryVO.getSceneryName()"/>"></a><p><a href="SceneryAction!getSceneryById.action?sceneryId=<s:property value="#sceneryVO.getSceneryId()"/>" title="<s:property value="#sceneryVO.getSceneryName()"/>"><s:property value="#sceneryVO.getSceneryName()"/></a></p><p><span class="price"><s:property value="#sceneryVO.getSceneryPrice()"/>元</span><!-- <a class="order" href="javascript:void(0);">预定</a> --></p></li>
 	        	</s:iterator>
           	</ul>
           <div class="clear"></div>
@@ -36,7 +36,7 @@
 			}else{
 				param += "pageVO.currentPage=" + currentPage;
 			}
-			window.location.href="/zhonglv/SceneryAction.action" + param;
+			window.location.href="SceneryAction.action" + param;
 		}
 	</script>
 </div>

@@ -29,7 +29,7 @@
 			
 			$.ajax({
 				type:"post",
-				url:"/zhonglv/TourismNewsManagerAction!ajaxAddTourismNews.action",
+				url:"TourismNewsManagerAction!ajaxAddTourismNews.action",
 				async:false,
 				dataType:"json",
 				data:{

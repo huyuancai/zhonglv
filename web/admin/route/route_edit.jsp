@@ -15,6 +15,7 @@
 <script type="text/javascript" src="<s:url value="/js/jquery-1.4.4.min.js"/>"></script>
 <script charset="utf-8" src="<s:url value="/DatePicker/WdatePicker.js"/>"></script>
 <script type="text/javascript" src="<s:url value="/admin/js/ajaxfileupload.js"/>"></script>
+<script type="text/javascript" src="<s:url value="/js/htmlDecode.js"/>"></script>
 <script type="text/javascript">
 	$().ready(function(){
 		$("#Button1").click(function(){
@@ -78,7 +79,7 @@
 			}
 			$.ajax({
 				type:"post",
-				url:"/zhonglv/RouteManagerAction!ajaxUpdateRoute.action",
+				url:"RouteManagerAction!ajaxUpdateRoute.action",
 				async:false,
 				dataType:"json",
 				data:data,
@@ -129,7 +130,7 @@
 		}
 		
 		$.ajaxFileUpload({
-			url:"/zhonglv/FileUploadAction!ajaxUploadRouteImage.action",
+			url:"FileUploadAction!ajaxUploadRouteImage.action",
 			secureuri:false,
 			fileElementId:'image',
 			dataType: 'json',
@@ -159,13 +160,6 @@
 		$("#fileUploadStatus").text(errMsg);
 	}
 	
-	function HTMLDecode (text) { 
-		var temp = document.createElement("div"); 
-		temp.innerHTML = text; 
-		var output = temp.innerText || temp.textContent; 
-		temp = null; 
-		return output; 
-	} 
 	function checkFileSuffix(suffix) {
 	    if (!suffix.match(/.jpg|.gif|.png|.bmp|.jpeg/i)) {
 	        return false;

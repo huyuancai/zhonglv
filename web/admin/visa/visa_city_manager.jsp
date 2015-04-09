@@ -19,7 +19,7 @@
 			}
 			
 			$.ajax({
-				url:"/zhonglv/VisaCityManagerAction!ajaxAddVsiaCity.action",
+				url:"VisaCityManagerAction!ajaxAddVsiaCity.action",
 				type:"post",
 				dataType:"json",
 				async:false,
@@ -59,7 +59,7 @@
 					return false;
 				}
 				$.ajax({
-					url:"/zhonglv/VisaCityManagerAction!ajaxUpdateVisaCity.action",
+					url:"VisaCityManagerAction!ajaxUpdateVisaCity.action",
 					type:"post",
 					dataType:"json",
 					async:false,
@@ -93,7 +93,7 @@
 				var obj = event.target;
 				var cityId = $(obj).parent().prev().prev().text();
 				$.ajax({
-					url:"/zhonglv/VisaCityManagerAction!ajaxDeleteVisaCity.action",
+					url:"VisaCityManagerAction!ajaxDeleteVisaCity.action",
 					type:"post",
 					dataType:"json",
 					async:false,

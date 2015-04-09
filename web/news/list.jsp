@@ -13,7 +13,7 @@
 							<s:iterator var="tourismNewsVO" value="#request.tourismNewsVOs" status="s">
 								<li>
 									<span class="col_right"><s:property value="#tourismNewsVO.getNewsCreateTime()"/></span>
-									<a href="/zhonglv/TourismNewsAction!getTourismNewsById.action?newsId=<s:property value="#tourismNewsVO.getNewsId()"/>" target="_blank" title="<s:property value="#tourismNewsVO.getNewsName()"/>">
+									<a href="TourismNewsAction!getTourismNewsById.action?newsId=<s:property value="#tourismNewsVO.getNewsId()"/>" target="_blank" title="<s:property value="#tourismNewsVO.getNewsName()"/>">
 										<s:property value="#tourismNewsVO.getNewsName()"/>
 									</a>
 									<s:if test="(#s.index+1)%5==0"><hr></s:if>
@@ -39,7 +39,7 @@
 			}else{
 				param += "pageVO.currentPage=" + currentPage;
 			}
-			window.location.href="/zhonglv/TourismNewsAction.action" + param;
+			window.location.href="TourismNewsAction.action" + param;
 		}
 	</script>
 <s:include value="../footer.jsp"></s:include>

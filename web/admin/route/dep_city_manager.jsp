@@ -19,7 +19,7 @@
 			}
 			
 			$.ajax({
-				url:"/zhonglv/DepartureCityAction!ajaxAddDepartureCity.action",
+				url:"DepartureCityAction!ajaxAddDepartureCity.action",
 				type:"post",
 				dataType:"json",
 				async:false,
@@ -59,7 +59,7 @@
 					return false;
 				}
 				$.ajax({
-					url:"/zhonglv/DepartureCityAction!ajaxUpdateDepartureCity.action",
+					url:"DepartureCityAction!ajaxUpdateDepartureCity.action",
 					type:"post",
 					dataType:"json",
 					async:false,
@@ -93,7 +93,7 @@
 				var obj = event.target;
 				var depCityId = $(obj).parent().prev().prev().text();
 				$.ajax({
-					url:"/zhonglv/DepartureCityAction!ajaxDeleteDepartureCity.action",
+					url:"DepartureCityAction!ajaxDeleteDepartureCity.action",
 					type:"post",
 					dataType:"json",
 					async:false,

@@ -19,7 +19,7 @@
 			}
 			
 			$.ajax({
-				url:"/zhonglv/VisaTypeManagerAction!ajaxAddVsiaType.action",
+				url:"VisaTypeManagerAction!ajaxAddVsiaType.action",
 				type:"post",
 				dataType:"json",
 				async:false,
@@ -59,7 +59,7 @@
 					return false;
 				}
 				$.ajax({
-					url:"/zhonglv/VisaTypeManagerAction!ajaxUpdateVisaType.action",
+					url:"VisaTypeManagerAction!ajaxUpdateVisaType.action",
 					type:"post",
 					dataType:"json",
 					async:false,
@@ -93,7 +93,7 @@
 				var obj = event.target;
 				var typeId = $(obj).parent().prev().prev().text();
 				$.ajax({
-					url:"/zhonglv/VisaTypeManagerAction!ajaxDeleteVisaType.action",
+					url:"VisaTypeManagerAction!ajaxDeleteVisaType.action",
 					type:"post",
 					dataType:"json",
 					async:false,

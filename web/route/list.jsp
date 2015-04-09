@@ -2,7 +2,7 @@
 <%@ page language="java" pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <s:include value="../head.jsp"></s:include>
 <div class="container">	
-<div class="position">当前位置：<a href="<s:url value="/ToIndex.action"/>">首页</a> &gt; <a href="javascript:void(0);">线路</a> &gt; <a href="/zhonglv/RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>"><s:property value="#request.routeTypeName"/></a> </div>
+<div class="position">当前位置：<a href="<s:url value="/ToIndex.action"/>">首页</a> &gt; <a href="javascript:void(0);">线路</a> &gt; <a href="RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>"><s:property value="#request.routeTypeName"/></a> </div>
 	<div id="list_contain_route">   
 	<div class="left">
         <div class="box4">
@@ -12,7 +12,7 @@
             <ul>     
             	<s:iterator var="topicsVO" value="#request.topicsVOs">
             		<li>
-            			<a href="/zhonglv/RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&topicsId=<s:property value="#topicsVO.getTopicsId()"/>">
+            			<a href="RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&topicsId=<s:property value="#topicsVO.getTopicsId()"/>">
             				<s:property value="#topicsVO.getTopicsName()"/>
             			</a>
             		</li>
@@ -23,31 +23,31 @@
           	<h2>天数</h2>
             <ul>
            		<li>
-           			<a href="/zhonglv/RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>">不限</a>
+           			<a href="RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>">不限</a>
            		</li>
            		<li>
-           			<a href="/zhonglv/RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=1">一日游</a>
+           			<a href="RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=1">一日游</a>
            		</li>
            		<li>
-           			<a href="/zhonglv/RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=2">二日游</a>
+           			<a href="RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=2">二日游</a>
            		</li>
            		<li>
-           			<a href="/zhonglv/RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=3">三日游</a>
+           			<a href="RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=3">三日游</a>
            		</li>
            		<li>
-           			<a href="/zhonglv/RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=4">四日游</a>
+           			<a href="RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=4">四日游</a>
            		</li>
            		<li>
-           			<a href="/zhonglv/RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=5">五日游</a>
+           			<a href="RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=5">五日游</a>
            		</li>
            		<li>
-           			<a href="/zhonglv/RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=6">六日游</a>
+           			<a href="RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=6">六日游</a>
            		</li>
            		<li>
-           			<a href="/zhonglv/RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=7">七日游</a>
+           			<a href="RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=7">七日游</a>
            		</li>
            		<li>
-           			<a href="/zhonglv/RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=8">七日以上</a>
+           			<a href="RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&days=8">七日以上</a>
            		</li>
             </ul>
           </div>
@@ -56,7 +56,7 @@
             <ul>
             	<s:iterator var="destinationCityVO" value="#request.destinationCityVOs">
             		<li>
-            			<a href="/zhonglv/RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&desCityId=<s:property value="#destinationCityVO.getDesCityId()"/>">
+            			<a href="RouteAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>&desCityId=<s:property value="#destinationCityVO.getDesCityId()"/>">
             				<s:property value="#destinationCityVO.getDesCityName()"/>
             			</a>
             		</li>
@@ -72,7 +72,7 @@
         <div class="line_img" style="margin:5px 0px;">
         	<ul>
 	        	<s:iterator var="routeVO" value="#request.routeVOs">
-		            <li class="list"><a target="_blank" href="/zhonglv/RouteAction!getRouteById.action?routeId=<s:property value="#routeVO.getRouteId()"/>"><img src="<s:url value="%{#routeVO.getRouteThumb()}"/>" border="0" title="<s:property value="#routeVO.getRouteTitle()"/>"></a><p><a href="/zhonglv/RouteAction!getRouteById.action?routeId=<s:property value="#routeVO.getRouteId()"/>" title="<s:property value="#routeVO.getRouteTitle()"/>"><s:property value="#routeVO.getRouteName()"/></a></p><p><span class="price"><s:property value="#routeVO.getRoutePrice()"/>元</span><!-- <a class="order" href="javascript:void(0);">预定</a> --></p></li>
+		            <li class="list"><a target="_blank" href="RouteAction!getRouteById.action?routeId=<s:property value="#routeVO.getRouteId()"/>"><img src="<s:url value="%{#routeVO.getRouteThumb()}"/>" border="0" title="<s:property value="#routeVO.getRouteTitle()"/>"></a><p><a href="RouteAction!getRouteById.action?routeId=<s:property value="#routeVO.getRouteId()"/>" title="<s:property value="#routeVO.getRouteTitle()"/>"><s:property value="#routeVO.getRouteName()"/></a></p><p><span class="price"><s:property value="#routeVO.getRoutePrice()"/>元</span><!-- <a class="order" href="javascript:void(0);">预定</a> --></p></li>
 	        	</s:iterator>
           	</ul>
           <div class="clear"></div>
@@ -111,7 +111,7 @@
 			if ( desCityId ) {
 				param += '&desCityId=' + desCityId;
 			}
-			window.location.href="/zhonglv/RouteAction.action" + param;
+			window.location.href="RouteAction.action" + param;
 		}
 	</script>
 </div>

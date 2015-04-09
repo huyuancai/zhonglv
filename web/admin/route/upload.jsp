@@ -24,7 +24,7 @@
 	//Dropzone的初始化，myDropzone为form的id
     Dropzone.options.myDropzone = {
         //指定上传图片的路径
-        url: "/zhonglv/RouteImageAction!ajaxUploadImages.action",
+        url: "RouteImageAction!ajaxUploadImages.action",
         method: "post",
         //添加上传取消和删除预览图片的链接，默认不添加
         addRemoveLinks: true,
@@ -81,7 +81,7 @@
 				cancelBtn.val("取消");
 				okBtn.on("click",function(){
 					$.ajax({
-						url:"/zhonglv/RouteImageAction!ajaxUpdateImageAlias.action",
+						url:"RouteImageAction!ajaxUpdateImageAlias.action",
 						type:"post",
 						dataType:"json",
 						data:{
@@ -108,7 +108,7 @@
 			$(obj).on("click",function(){
 				if (confirm("确定删除吗？")) {
 					$.ajax({
-						url:"/zhonglv/RouteImageAction!ajaxDeleteRouteImage.action",
+						url:"RouteImageAction!ajaxDeleteRouteImage.action",
 						type:"post",
 						dataType:"json",
 						data:{
@@ -138,9 +138,9 @@
           </td>
       </tr>
     </tbody></table>
-	<form action="/zhonglv/RouteImageAction!ajaxUploadImages.action" class="dropzone" method="post" enctype="multipart/form-data" id="myDropzone">
+	<form action="RouteImageAction!ajaxUploadImages.action" class="dropzone" method="post" enctype="multipart/form-data" id="myDropzone">
 	</form>
-	<form action="/zhonglv/RouteImageAction!saveRouteImages.action" method="post" name="saveImageForm">
+	<form action="RouteImageAction!saveRouteImages.action" method="post" name="saveImageForm">
 		<input type="hidden" name="routeId" value="<s:property value="#request.routeId"/>">
 		<input type="submit" value="确定" class="btn-submit">
 	</form>

@@ -12,6 +12,7 @@
 <script charset="utf-8" src="<s:url value="/admin/kindeditor/kindeditor-min.js"/>"></script>
 <script charset="utf-8" src="<s:url value="/admin/kindeditor/lang/zh_CN.js"/>"></script>
 <script type="text/javascript" src="<s:url value="/js/jquery-1.4.4.min.js"/>"></script>
+<script type="text/javascript" src="<s:url value="/js/htmlDecode.js"/>"></script>
 <script type="text/javascript">
 	$().ready(function(){
 		$("#Button1").click(function(){
@@ -30,7 +31,7 @@
 			
 			$.ajax({
 				type:"post",
-				url:"/zhonglv/TourismNewsManagerAction!ajaxUpdateTourismNews.action",
+				url:"TourismNewsManagerAction!ajaxUpdateTourismNews.action",
 				async:false,
 				dataType:"json",
 				data:{
@@ -62,14 +63,6 @@
 		$("#fileUploadStatus").css("color","red");
 		$("#fileUploadStatus").text(errMsg);
 	}
-	
-	function HTMLDecode (text) { 
-		var temp = document.createElement("div"); 
-		temp.innerHTML = text; 
-		var output = temp.innerText || temp.textContent; 
-		temp = null; 
-		return output; 
-	} 
 	
 </script>
 </head>

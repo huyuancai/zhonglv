@@ -45,13 +45,13 @@
 						</div>
 	            	</td>
 	            	<td>
-	              		<div align="left">&nbsp;<a href="/zhonglv/TourismStrategyAction!getTourismStrategyById.action?strategyId=<s:property value="#tourismStrategyVO.getStrategyId()"/>" target="_blank"><s:property value="#tourismStrategyVO.getStrategyName()"/></a>
+	              		<div align="left">&nbsp;<a href="TourismStrategyAction!getTourismStrategyById.action?strategyId=<s:property value="#tourismStrategyVO.getStrategyId()"/>" target="_blank"><s:property value="#tourismStrategyVO.getStrategyName()"/></a>
 			            </div>
 	            	</td>
 		            <td><s:property value="#tourismStrategyVO.getStrategyCounts()"/></td>
 		            <td><s:property value="#tourismStrategyVO.getStrategyCreateTime()"/></td>
 	            	<td>
-			            <a href="/zhonglv/TourismStrategyManagerAction!editTourismStrategyById.action?tourismStrategyVO.strategyId=<s:property value="#tourismStrategyVO.getStrategyId()"/>">编辑</a>
+			            <a href="TourismStrategyManagerAction!editTourismStrategyById.action?tourismStrategyVO.strategyId=<s:property value="#tourismStrategyVO.getStrategyId()"/>">编辑</a>
 						      |
 				      	<a onclick="deleteTourismStrategy(<s:property value="#tourismStrategyVO.getStrategyId()"/>)" href="javascript:void(0);">删除</a>			
 				    </td>
@@ -97,7 +97,7 @@
 			if ( strategyName ) {
 				param += "&tourismStrategyVO.strategyName=" + strategyName;
 			}
-			window.location.href="/zhonglv/TourismStrategyManagerAction.action" + param;
+			window.location.href="TourismStrategyManagerAction.action" + param;
 		}
 		
 		function customPage(strategyName){
@@ -115,7 +115,7 @@
 			if ( confirm('添加容易，删除不易，且删且珍惜，确定删除吗？') ) {
 				$.ajax({
 					type:"post",
-					url:"/zhonglv/TourismStrategyManagerAction!ajaxDeleteTourismStrategy.action",
+					url:"TourismStrategyManagerAction!ajaxDeleteTourismStrategy.action",
 					async:false,
 					dataType:"json",
 					data:{
@@ -160,7 +160,7 @@
 				return false;
 			}
 			if ( 'delete' == batRunType ) {
-				action = '/zhonglv/TourismStrategyManagerAction!ajaxDeleteTourismStrategyByIds.action';
+				action = 'TourismStrategyManagerAction!ajaxDeleteTourismStrategyByIds.action';
 			}else{
 				alert("请选择要执行的操作！");
 				return false;

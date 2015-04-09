@@ -19,7 +19,7 @@
 			}
 			
 			$.ajax({
-				url:"/zhonglv/RouteTypeManagerAction!ajaxAddRouteType.action",
+				url:"RouteTypeManagerAction!ajaxAddRouteType.action",
 				type:"post",
 				dataType:"json",
 				async:false,
@@ -59,7 +59,7 @@
 					return false;
 				}
 				$.ajax({
-					url:"/zhonglv/RouteTypeManagerAction!ajaxUpdateRouteType.action",
+					url:"RouteTypeManagerAction!ajaxUpdateRouteType.action",
 					type:"post",
 					dataType:"json",
 					async:false,
@@ -93,7 +93,7 @@
 				var obj = event.target;
 				var routeTypeId = $(obj).parent().prev().prev().text();
 				$.ajax({
-					url:"/zhonglv/RouteTypeManagerAction!ajaxDeleteRouteType.action",
+					url:"RouteTypeManagerAction!ajaxDeleteRouteType.action",
 					type:"post",
 					dataType:"json",
 					async:false,

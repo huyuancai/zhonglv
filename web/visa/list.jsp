@@ -2,7 +2,7 @@
 <%@ page language="java" pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <s:include value="../head.jsp"></s:include>
 <div class="container">	
-<div class="position">当前位置：首页 &gt; <a href="<s:url value="/VisaAction.action"/>">旅游签证</a> &gt; <a href="/zhonglv/VisaAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>"><s:property value="#request.routeTypeName"/></a> </div>
+<div class="position">当前位置：首页 &gt; <a href="<s:url value="/VisaAction.action"/>">旅游签证</a> &gt; <a href="VisaAction.action?routeTypeId=<s:property value="#request.routeTypeId"/>"><s:property value="#request.routeTypeName"/></a> </div>
 	<div id="list_contain_visa">  
 	<div class="left">
         <div class="box4">
@@ -12,7 +12,7 @@
             <ul>     
             	<s:iterator var="visaCountryVO" value="#request.visaCountryVOs">
             		<li>
-            			<a href="/zhonglv/VisaAction.action?visaVO.visaCountry=<s:property value="#visaCountryVO.getCountryId()"/>">
+            			<a href="VisaAction.action?visaVO.visaCountry=<s:property value="#visaCountryVO.getCountryId()"/>">
             				<s:property value="#visaCountryVO.getCountryName()"/>
             			</a>
             		</li>
@@ -24,7 +24,7 @@
             <ul>
             	<s:iterator var="visaTypeVO" value="#request.visaTypeVOs">
             		<li>
-            			<a href="/zhonglv/VisaAction.action?visaVO.visaType=<s:property value="#visaTypeVO.getTypeId()"/>">
+            			<a href="VisaAction.action?visaVO.visaType=<s:property value="#visaTypeVO.getTypeId()"/>">
             				<s:property value="#visaTypeVO.getTypeName()"/>
             			</a>
             		</li>
@@ -41,11 +41,11 @@
         	<ul>
 	        	<s:iterator var="visaVO" value="#request.visaVOs">
 		            <li class="list">
-		            	<a target="_blank" href="/zhonglv/VisaAction!getVisaById.action?visaId=<s:property value="#visaVO.getVisaId()"/>">
+		            	<a target="_blank" href="VisaAction!getVisaById.action?visaId=<s:property value="#visaVO.getVisaId()"/>">
 		            		<img src="<s:url value="%{#visaVO.getVisaThumb()}"/>" border="0" title="<s:property value="#visaVO.getVisaName()"/>">
 		            	</a>
 		            	<p>
-		            		<a href="/zhonglv/VisaAction!getVisaById.action?visaId=<s:property value="#visaVO.getVisaId()"/>" title="<s:property value="#visaVO.getVisaName()"/>">
+		            		<a href="VisaAction!getVisaById.action?visaId=<s:property value="#visaVO.getVisaId()"/>" title="<s:property value="#visaVO.getVisaName()"/>">
 		            			<s:property value="#visaVO.getVisaName()"/>
 		            		</a>
 		            	</p>
@@ -88,7 +88,7 @@
 			if ( visaType ) {
 				param += '&visaVO.visaType=' + visaType;
 			}
-			window.location.href="/zhonglv/VisaAction.action" + param;
+			window.location.href="VisaAction.action" + param;
 		}
 	</script>
 </div>

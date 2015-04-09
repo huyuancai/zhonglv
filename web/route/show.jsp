@@ -4,6 +4,7 @@
 <script type="text/javascript" src="<s:url value="/js/myfocus-2.0.1.min.js"/>"></script>
 <link href="<s:url value="/css/mF_games_tb.css"/>" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="<s:url value="/js/mF_games_tb.js"/>"></script>
+<script type="text/javascript" src="<s:url value="/js/htmlDecode.js"/>"></script>
 <style type="text/css">
 #myFocus{ width:450px; height:283px;}
 </style>
@@ -14,13 +15,6 @@
 		loadIMGTimeout:0
 	});
 	
-	function HTMLDecode (text) { 
-		var temp = document.createElement("div"); 
-		temp.innerHTML = text; 
-		var output = temp.innerText || temp.textContent; 
-		temp = null; 
-		return output; 
-	} 
 	$().ready(function(){
 		$("#content_2_1").html(HTMLDecode('<s:property value="#request.routeVO.getRouteItinerary()"/>'));
 		$("#content_2_2").html(HTMLDecode('<s:property value="#request.routeVO.getRouteFeatureDesc()"/>'));

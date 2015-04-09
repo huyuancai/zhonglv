@@ -45,13 +45,13 @@
 						</div>
 	            	</td>
 	            	<td>
-	              		<div align="left">&nbsp;<a href="/zhonglv/TourismNewsAction!getTourismNewsById.action?newsId=<s:property value="#tourismNewsVO.getNewsId()"/>" target="_blank"><s:property value="#tourismNewsVO.getNewsName()"/></a>
+	              		<div align="left">&nbsp;<a href="TourismNewsAction!getTourismNewsById.action?newsId=<s:property value="#tourismNewsVO.getNewsId()"/>" target="_blank"><s:property value="#tourismNewsVO.getNewsName()"/></a>
 			            </div>
 	            	</td>
 		            <td><s:property value="#tourismNewsVO.getNewsCounts()"/></td>
 		            <td><s:property value="#tourismNewsVO.getNewsCreateTime()"/></td>
 	            	<td>
-			            <a href="/zhonglv/TourismNewsManagerAction!editTourismNewsById.action?tourismNewsVO.newsId=<s:property value="#tourismNewsVO.getNewsId()"/>">编辑</a>
+			            <a href="TourismNewsManagerAction!editTourismNewsById.action?tourismNewsVO.newsId=<s:property value="#tourismNewsVO.getNewsId()"/>">编辑</a>
 						      |
 				      	<a onclick="deleteTourismNews(<s:property value="#tourismNewsVO.getNewsId()"/>)" href="javascript:void(0);">删除</a>			
 				    </td>
@@ -97,7 +97,7 @@
 			if ( newsName ) {
 				param += "&tourismNewsVO.newsName=" + newsName;
 			}
-			window.location.href="/zhonglv/TourismNewsManagerAction.action" + param;
+			window.location.href="TourismNewsManagerAction.action" + param;
 		}
 		
 		function customPage(newsName){
@@ -115,7 +115,7 @@
 			if ( confirm('添加容易，删除不易，且删且珍惜，确定删除吗？') ) {
 				$.ajax({
 					type:"post",
-					url:"/zhonglv/TourismNewsManagerAction!ajaxDeleteTourismNews.action",
+					url:"TourismNewsManagerAction!ajaxDeleteTourismNews.action",
 					async:false,
 					dataType:"json",
 					data:{
@@ -160,7 +160,7 @@
 				return false;
 			}
 			if ( 'delete' == batRunType ) {
-				action = '/zhonglv/TourismNewsManagerAction!ajaxDeleteTourismNewsByIds.action';
+				action = 'TourismNewsManagerAction!ajaxDeleteTourismNewsByIds.action';
 			}else{
 				alert("请选择要执行的操作！");
 				return false;

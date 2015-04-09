@@ -72,7 +72,7 @@
 			}
 			$.ajax({
 				type:"post",
-				url:"/zhonglv/RouteManagerAction!ajaxAddRoute.action",
+				url:"RouteManagerAction!ajaxAddRoute.action",
 				async:false,
 				dataType:"json",
 				data:data,
@@ -108,7 +108,7 @@
 		}
 		
 		$.ajaxFileUpload({
-			url:"/zhonglv/FileUploadAction!ajaxUploadRouteImage.action",
+			url:"FileUploadAction!ajaxUploadRouteImage.action",
 			secureuri:false,
 			fileElementId:'image',
 			dataType: 'json',

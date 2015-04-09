@@ -51,7 +51,7 @@
 						</div>
 	            	</td>
 	            	<td>
-	              		<div align="left">&nbsp;<a href="/zhonglv/RouteAction!getRouteById.action?routeId=<s:property value="#routeVO.getRouteId()"/>" target="_blank"><s:property value="#routeVO.getRouteName()"/></a>
+	              		<div align="left">&nbsp;<a href="RouteAction!getRouteById.action?routeId=<s:property value="#routeVO.getRouteId()"/>" target="_blank"><s:property value="#routeVO.getRouteName()"/></a>
 	              			<s:if test="#routeVO.isRouteRecommend()">
 					        	[推荐]			              
 	              			</s:if>
@@ -61,10 +61,10 @@
 	            	<td><s:property value="#routeVO.getRoutePrice()"/></td>
 		            <td><s:property value="#routeVO.getRouteCreateDate()"/></td>
 		            <td>
-		              <a href="/zhonglv/RouteImageAction.action?routeId=<s:property value="#routeVO.getRouteId()"/>">图片</a>
+		              <a href="RouteImageAction.action?routeId=<s:property value="#routeVO.getRouteId()"/>">图片</a>
 		            </td>
 	            	<td>
-			            <a href="/zhonglv/RouteManagerAction!editRouteById.action?routeVO.routeId=<s:property value="#routeVO.getRouteId()"/>">编辑</a>
+			            <a href="RouteManagerAction!editRouteById.action?routeVO.routeId=<s:property value="#routeVO.getRouteId()"/>">编辑</a>
 						      |
 				      	<a onclick="deleteRoute(<s:property value="#routeVO.getRouteId()"/>)" href="javascript:void(0);">删除</a>			
 				    </td>
@@ -115,7 +115,7 @@
 			if ( routeRecommend || routeRecommend == false ) {
 				param += "&routeVO.routeRecommend=" + routeRecommend;
 			}
-			window.location.href="/zhonglv/RouteManagerAction.action" + param;
+			window.location.href="RouteManagerAction.action" + param;
 		}
 		function customPage(){
 			var page = $("#gotoPage").val();
@@ -132,7 +132,7 @@
 			if ( confirm('添加容易，删除不易，且删且珍惜，确定删除吗？') ) {
 				$.ajax({
 					type:"post",
-					url:"/zhonglv/RouteManagerAction!ajaxDeleteRoute.action",
+					url:"RouteManagerAction!ajaxDeleteRoute.action",
 					async:false,
 					dataType:"json",
 					data:{
@@ -177,11 +177,11 @@
 				return false;
 			}
 			if ( 'rem' == batRunType ) {
-				action = "/zhonglv/RouteManagerAction!ajaxUpdateRouteRecommend.action";
+				action = "RouteManagerAction!ajaxUpdateRouteRecommend.action";
 			} else if ( 'unrem' == batRunType ) {
-				action = "/zhonglv/RouteManagerAction!ajaxUpdateCancelRouteRecommend.action";
+				action = "RouteManagerAction!ajaxUpdateCancelRouteRecommend.action";
 			} else if ( 'delete' == batRunType ) {
-				action = '/zhonglv/RouteManagerAction!ajaxDeleteRouteByIds.action';
+				action = 'RouteManagerAction!ajaxDeleteRouteByIds.action';
 			}else{
 				alert("请选择要执行的操作！");
 				return false;

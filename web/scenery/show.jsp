@@ -4,6 +4,7 @@
 <script type="text/javascript" src="<s:url value="/js/myfocus-2.0.1.min.js"/>"></script>
 <link href="<s:url value="/css/mF_games_tb.css"/>" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="<s:url value="/js/mF_games_tb.js"/>"></script>
+<script type="text/javascript" src="<s:url value="/js/htmlDecode.js"/>"></script>
 <style type="text/css">
 #myFocus{ width:450px; height:283px;}
 #allmap {width: 940px;height: 940px;overflow: hidden;margin:0;font-family:"微软雅黑";}
@@ -34,14 +35,7 @@ li{
 		pattern:'mF_games_tb',//风格
 		loadIMGTimeout:0
 	});
-	
-	function HTMLDecode (text) { 
-		var temp = document.createElement("div"); 
-		temp.innerHTML = text; 
-		var output = temp.innerText || temp.textContent; 
-		temp = null; 
-		return output; 
-	} 
+
 	$().ready(function(){
 		$("#content_2_1").html(HTMLDecode('<s:property value="#request.sceneryVO.getSceneryIntroduce()"/>'));
 	});

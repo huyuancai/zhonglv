@@ -163,7 +163,7 @@ body {
 				$("#verifycodeError").hide();
 			}
 			$.ajax({
-				url:"/zhonglv/LoginAction!ajaxLogin.action",
+				url:"LoginAction!ajaxLogin.action",
 				type:"post",
 				async:false,
 				data: {
@@ -174,7 +174,7 @@ body {
 				dataType: "json",
 				success:function(data){
 					if (data.code == 90000 ) {
-						window.location = "/zhonglv/admin/index.jsp";
+						window.location = "admin/index.jsp";
 					}else{
 						if ( data.code == 91001 ) {
 							$("#userNameError").html(data.errMsg);
@@ -206,7 +206,7 @@ body {
 		function getCaptcha(){
 			$.ajax({
 				type:'post',
-				url:'/zhonglv/LoginAction!ajaxGetCaptcha.action',
+				url:'LoginAction!ajaxGetCaptcha.action',
 				async:false,
 				dataType: "json",
 				success:function(data){

@@ -14,7 +14,7 @@
 							<s:iterator var="tourismStrategyVO" value="#request.tourismStrategyVOs" status="s">
 								<li>
 									<span class="col_right"><s:property value="#tourismStrategyVO.getStrategyCreateTime()"/></span>
-									<a href="/zhonglv/TourismStrategyAction!getTourismStrategyById.action?strategyId=<s:property value="#tourismStrategyVO.getStrategyId()"/>" target="_blank" title="<s:property value="#tourismStrategyVO.getStrategyName()"/>">
+									<a href="TourismStrategyAction!getTourismStrategyById.action?strategyId=<s:property value="#tourismStrategyVO.getStrategyId()"/>" target="_blank" title="<s:property value="#tourismStrategyVO.getStrategyName()"/>">
 										<s:property value="#tourismStrategyVO.getStrategyName()"/>
 									</a>
 									<s:if test="(#s.index+1)%5==0"><hr></s:if>
@@ -40,7 +40,7 @@
 			}else{
 				param += "pageVO.currentPage=" + currentPage;
 			}
-			window.location.href="/zhonglv/TourismStrategyAction.action" + param;
+			window.location.href="TourismStrategyAction.action" + param;
 		}
 	</script>
 <s:include value="../footer.jsp"></s:include>

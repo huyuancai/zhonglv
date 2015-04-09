@@ -53,7 +53,7 @@
 			data['visaVO.visaCount']=visa_count;
 			$.ajax({
 				type:"post",
-				url:"/zhonglv/VisaManagerAction!ajaxAddVisa.action",
+				url:"VisaManagerAction!ajaxAddVisa.action",
 				async:false,
 				dataType:"json",
 				data:data,
@@ -90,7 +90,7 @@
 		}
 		
 		$.ajaxFileUpload({
-			url:"/zhonglv/FileUploadAction!ajaxUploadVisaImage.action",
+			url:"FileUploadAction!ajaxUploadVisaImage.action",
 			secureuri:false,
 			fileElementId:'image',
 			dataType: 'json',

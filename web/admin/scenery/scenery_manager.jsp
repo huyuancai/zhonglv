@@ -67,7 +67,7 @@
 		              <a href="javascript:void(0);">图片</a>
 		            </td>
 	            	<td>
-			            <a href="/zhonglv/SceneryManagerAction!editSceneryById.action?sceneryVO.sceneryId=<s:property value="#sceneryVO.getSceneryId()"/>">编辑</a>
+			            <a href="SceneryManagerAction!editSceneryById.action?sceneryVO.sceneryId=<s:property value="#sceneryVO.getSceneryId()"/>">编辑</a>
 						      |
 				      	<a onclick="deleteScenery(<s:property value="#sceneryVO.getSceneryId()"/>)" href="javascript:void(0);">删除</a>			
 				    </td>
@@ -118,7 +118,7 @@
 			if ( null != sceneryRecommend && "" != sceneryRecommend && undefined != sceneryRecommend ) {
 				param += "&sceneryVO.sceneryRecommend=true";
 			}
-			window.location.href="/zhonglv/SceneryManagerAction.action" + param;
+			window.location.href="SceneryManagerAction.action" + param;
 		}
 		function customPage(){
 			var page = $("#gotoPage").val();
@@ -135,7 +135,7 @@
 			if ( confirm('添加容易，删除不易，且删且珍惜，确定删除吗？') ) {
 				$.ajax({
 					type:"post",
-					url:"/zhonglv/SceneryManagerAction!ajaxDeleteScenery.action",
+					url:"SceneryManagerAction!ajaxDeleteScenery.action",
 					async:false,
 					dataType:"json",
 					data:{
@@ -180,11 +180,11 @@
 				return false;
 			}
 			if ( 'rem' == batRunType ) {
-				action = "/zhonglv/SceneryManagerAction!ajaxUpdateSceneryRecommend.action";
+				action = "SceneryManagerAction!ajaxUpdateSceneryRecommend.action";
 			} else if ( 'unrem' == batRunType ) {
-				action = "/zhonglv/SceneryManagerAction!ajaxUpdateCancelSceneryRecommend.action";
+				action = "SceneryManagerAction!ajaxUpdateCancelSceneryRecommend.action";
 			} else if ( 'delete' == batRunType ) {
-				action = '/zhonglv/SceneryManagerAction!ajaxDeleteSceneryByIds.action';
+				action = 'SceneryManagerAction!ajaxDeleteSceneryByIds.action';
 			}else{
 				alert("请选择要执行的操作！");
 				return false;

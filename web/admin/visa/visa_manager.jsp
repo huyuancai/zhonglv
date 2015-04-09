@@ -70,14 +70,14 @@
 						</div>
 	            	</td>
 	            	<td>
-	              		<div align="left">&nbsp;<a href="/zhonglv/VisaAction!getVisaById.action?visaId=<s:property value="#visaVO.getVisaId()"/>" target="_blank"><s:property value="#visaVO.getVisaName()"/></a>
+	              		<div align="left">&nbsp;<a href="VisaAction!getVisaById.action?visaId=<s:property value="#visaVO.getVisaId()"/>" target="_blank"><s:property value="#visaVO.getVisaName()"/></a>
 			            </div>
 	            	</td>
 	            	<td><s:property value="#visaVO.getVisaPrice()"/></td>
 		            <td><s:property value="#visaVO.getVisaCount()"/></td>
 		            <td><s:property value="#visaVO.getVisaCreateTime()"/></td>
 	            	<td>
-			            <a href="/zhonglv/VisaManagerAction!editVisaById.action?visaVO.visaId=<s:property value="#visaVO.getVisaId()"/>">编辑</a>
+			            <a href="VisaManagerAction!editVisaById.action?visaVO.visaId=<s:property value="#visaVO.getVisaId()"/>">编辑</a>
 						      |
 				      	<a onclick="deleteVisa(<s:property value="#visaVO.getVisaId()"/>)" href="javascript:void(0);">删除</a>			
 				    </td>
@@ -132,7 +132,7 @@
 			if ( visaName ) {
 				param += "&visaVO.visaName=" + visaName;
 			}
-			window.location.href="/zhonglv/VisaManagerAction.action" + param;
+			window.location.href="VisaManagerAction.action" + param;
 		}
 		
 		function customPage(visaCountry,visaType,visaCity,visaName){
@@ -157,7 +157,7 @@
 			if ( confirm('添加容易，删除不易，且删且珍惜，确定删除吗？') ) {
 				$.ajax({
 					type:"post",
-					url:"/zhonglv/VisaManagerAction!ajaxDeleteVisa.action",
+					url:"VisaManagerAction!ajaxDeleteVisa.action",
 					async:false,
 					dataType:"json",
 					data:{
@@ -202,7 +202,7 @@
 				return false;
 			}
 			if ( 'delete' == batRunType ) {
-				action = '/zhonglv/VisaManagerAction!ajaxDeleteVisaByIds.action';
+				action = 'VisaManagerAction!ajaxDeleteVisaByIds.action';
 			}else{
 				alert("请选择要执行的操作！");
 				return false;

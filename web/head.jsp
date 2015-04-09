@@ -10,6 +10,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=9">	
 	<meta name="baidu-site-verification" content="XEptrtJiFV" />
 	<link href="<s:url value="/css/style.css"/>" rel="stylesheet" type="text/css"/>
+	<link href="<s:url value="/images/favicon.ico"/>" rel="icon" type="image/x-icon"/>
 	<script type="text/javascript" src="<s:url value="/js/jquery-1.4.4.min.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/js/L_slide.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/js/commen.js"/>"></script>
@@ -54,14 +55,14 @@
 				speed:400,
 			});
 			$.ajax({
-				url:"/zhonglv/RouteTypeAction!ajaxGetAllRouteType.action",
+				url:"RouteTypeAction!ajaxGetAllRouteType.action",
 				type:"post",
 				dataType: "json",
 				success:function(data){
 					if ( data ) {
 						var nav_home = $("#nav_home");
 						for ( var routeTypeVO in data) {
-							nav_home.after('<a href="/zhonglv/RouteAction.action?routeTypeId='+ data[routeTypeVO].routeTypeId +'" id="nav_'+ data[routeTypeVO].routeTypeId +'" title="'+ data[routeTypeVO].routeTypeName +'">'+ data[routeTypeVO].routeTypeName +'</a>');
+							nav_home.after('<a href="RouteAction.action?routeTypeId='+ data[routeTypeVO].routeTypeId +'" id="nav_'+ data[routeTypeVO].routeTypeId +'" title="'+ data[routeTypeVO].routeTypeName +'">'+ data[routeTypeVO].routeTypeName +'</a>');
 						}
 						var pathName = getPathName();
 						var typeid='<s:property value="#request.routeTypeId"/>';

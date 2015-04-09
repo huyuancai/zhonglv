@@ -18,7 +18,7 @@
 				return false;
 			}
 			$.ajax({
-				url:"/zhonglv/TopicsManagerAction!ajaxAddTopics.action",
+				url:"TopicsManagerAction!ajaxAddTopics.action",
 				type:"post",
 				dataType:"json",
 				async:false,
@@ -58,7 +58,7 @@
 					return false;
 				}
 				$.ajax({
-					url:"/zhonglv/TopicsManagerAction!ajaxUpdateTopics.action",
+					url:"TopicsManagerAction!ajaxUpdateTopics.action",
 					type:"post",
 					dataType:"json",
 					async:false,
@@ -92,7 +92,7 @@
 				var obj = event.target;
 				var topicsId = $(obj).parent().prev().prev().text();
 				$.ajax({
-					url:"/zhonglv/TopicsManagerAction!ajaxDeleteTopics.action",
+					url:"TopicsManagerAction!ajaxDeleteTopics.action",
 					type:"post",
 					dataType:"json",
 					async:false,

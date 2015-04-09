@@ -2,6 +2,7 @@
 <%@ page language="java" pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <s:include value="../head.jsp"></s:include>
 <link href="<s:url value="/css/show.css"/>" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="<s:url value="/js/htmlDecode.js"/>"></script>
 <div class="container">
   <div class="position">现在位置：<a href="<s:url value="/ToIndex.action"/>">首页</a>&gt; <a href="<s:url value="/TourismStrategyAction.action"/>">旅游攻略</a> 
 </div>
@@ -34,13 +35,6 @@
 	  </div>
 <div class="br"></div>
 <script type="text/javascript">
-	function HTMLDecode (text) { 
-		var temp = document.createElement("div"); 
-		temp.innerHTML = text; 
-		var output = temp.innerText || temp.textContent; 
-		temp = null; 
-		return output; 
-	}
 	$().ready(function(){
 		$(".content").html(HTMLDecode('<s:property value="#request.tourismStrategyVO.getStrategyContent()"/>'));
 	});
