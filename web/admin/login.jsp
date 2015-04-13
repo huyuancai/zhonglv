@@ -174,7 +174,7 @@ body {
 				dataType: "json",
 				success:function(data){
 					if (data.code == 90000 ) {
-						window.location = "admin/index.jsp";
+						window.location.reload();
 					}else{
 						if ( data.code == 91001 ) {
 							$("#userNameError").html(data.errMsg);

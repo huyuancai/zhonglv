@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="<s:url value="/admin/route/css/global.css"/>" rel="stylesheet" type="text/css">
+<link href="<s:url value="/admin/css/global.css"/>" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="<s:url value="/js/jquery-1.4.4.min.js"/>"></script>
 <script type="text/javascript">
 	$().ready(function(){

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="<s:url value="/admin/route/css/global.css"/>" rel="stylesheet" type="text/css">
+<link href="<s:url value="/admin/css/global.css"/>" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="<s:url value="/admin/kindeditor/themes/default/default.css"/>" />
 <script charset="utf-8" src="<s:url value="/admin/kindeditor/kindeditor-min.js"/>"></script>
 <script charset="utf-8" src="<s:url value="/admin/kindeditor/lang/zh_CN.js"/>"></script>

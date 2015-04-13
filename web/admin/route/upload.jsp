@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="<s:url value="/admin/route/css/global.css"/>" rel="stylesheet" type="text/css">
+<link href="<s:url value="/admin/css/global.css"/>" rel="stylesheet" type="text/css">
 <link href="<s:url value="/admin/dropzone/dropzone.min.css"/>" rel="stylesheet" type="text/css">
 <link href="<s:url value="/admin/dropzone/basic.min.css"/>" rel="stylesheet" type="text/css">
 <style type="text/css">

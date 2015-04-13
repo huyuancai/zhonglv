@@ -8,7 +8,7 @@
 <head>
 <title>编辑景点</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="<s:url value="/admin/route/css/global.css"/>" rel="stylesheet" type="text/css">
+<link href="<s:url value="/admin/css/global.css"/>" rel="stylesheet" type="text/css">
 <link href="<s:url value="/jquery-easyui/themes/default/easyui.css"/>" rel="stylesheet" type="text/css">
 <link href="<s:url value="/jquery-easyui/themes/icon.css"/>" rel="stylesheet" type="text/css">
 <link href="<s:url value="/jquery-easyui/themes/demo.css"/>" rel="stylesheet" type="text/css">

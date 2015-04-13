@@ -256,6 +256,21 @@ H1 a {
 							<li><a href="<s:url value="TourismNewsManagerAction.action"/>" target="main">管理资讯</a></li>
 						</ul>
 					</div>
+					<h1 class="type">
+						<a href="javascript:void(0);">滑块管理</a>
+					</h1>
+					<div class="content">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><img src="<s:url value="/admin/images/menu_topline.gif"/>" width="182"
+									height="5" /></td>
+							</tr>
+						</table>
+						<ul class="MM">
+							<li><a href="<s:url value="/admin/slide/slide_add.jsp"/>" target="main">添加滑块</a></li>
+							<li><a href="<s:url value="/admin/slide/slide_manager.jsp"/>" target="main">管理滑块</a></li>
+						</ul>
+					</div>
 				</div> <script type="text/javascript">
 					var contents = document.getElementsByClassName('content');
 					var toggles = document.getElementsByClassName('type');

@@ -27,33 +27,14 @@
 				function(){$(this).addClass('cats_on');},
 				function(){$(this).removeClass('cats_on');}
 			);
-			$(".af1").slide({
-				affect:1,
-				time:3000,
-				speed:400,
-				dot_text:false,
-			});
 			
-			//affect:2
-			$(".af2").slide({
-				affect:2,
-				time:3000,
-				speed:400,
-			});
-			
-			//affect:3
 			$(".af3").slide({
 				affect:3,
 				time:3000,
 				speed:400,
+				dot_text:true,
 			});
 			
-			//affect:4
-			$(".af4").slide({
-				affect:4,
-				time:3000,
-				speed:400,
-			});
 			$.ajax({
 				url:"RouteTypeAction!ajaxGetAllRouteType.action",
 				type:"post",

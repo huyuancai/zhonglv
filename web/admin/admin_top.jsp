@@ -18,7 +18,7 @@ function logout(){
 			async:false,
 			success:function(data){
 				if (data.code == 90000 ) {
-					parent.location = "admin/";
+					parent.location.reload();
 				}else{
 					alert(data.errMsg);
 					return false;
