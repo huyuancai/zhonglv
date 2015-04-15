@@ -10,6 +10,7 @@
 <link href="<s:url value="/admin/css/global.css"/>" rel="stylesheet" type="text/css">
 <link href="<s:url value="/admin/css/slide.css"/>" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="<s:url value="/js/jquery-1.4.4.min.js"/>"></script>
+<script type="text/javascript" src="<s:url value="/admin/js/ajaxfileupload.js"/>"></script>
 <title>滚动图片管理</title>
 </head>
 <body>
@@ -27,11 +28,13 @@
 							<tr>
 								<td class="spider_label">
 									<label for="name">滑块名称: <span style="color:#FF0000;">*</span></label>
-									<input type="text" id="name" name="name" value="" size="39">
-									<input type="hidden" name="typepr1" id="typepr1" value="image">
-									<a href="javascript:void(0);" class="button-primary thickbox thickbox-preview" title="添加图片" onclick="return false;" style="color: #fff;">
+									<input type="text" id="slideName" name="slideName" value="" size="39">
+									<input type="hidden" name="slideImgPath" id="slideImgPath">
+									<input type="file" name="image" id="image" style="display:none;" >
+									<a href="javascript:void(0);" class="button-primary thickbox thickbox-preview" title="添加图片" onclick="$('input[name=image]').click()" style="color: #fff;">
 		                              	添加图片
 		                            </a>
+		                            <span id="errMsg"></span>
 								</td>
 							</tr>	
 							<tr>
@@ -43,15 +46,7 @@
 						                          <td colspan="4">
 						                            <div id="wds_preview_wrapper_pr1" class="wds_preview_wrapper" style="width: 800px; height: 300px;">
 						                              <div class="wds_preview" style="overflow: hidden; position: absolute; width: inherit; height: inherit; background-color: transparent; background-image: none; display: block;">
-						                                <div id="wds_preview_imagepr1" class="wds_preview_imagepr1" style="background-color: rgba(0, 0, 0, 0.00);
-						                                            background-image: url(&quot;?date=2015-04-13 08:05:19&quot;);
-						                                            background-position: center center;
-						                                            background-repeat: no-repeat;
-						                                            background-size: cover;
-						                                            width: inherit;
-						                                            height: inherit;
-						                                            /*position: relative;*/">
-						                                                                </div>
+						                                <div id="showimg"></div>
 						                              </div>
 						                            </div>
 						                          </td>
@@ -61,12 +56,12 @@
 						                            <label for="linkpr1">链接地址: </label>
 						                          </td>
 						                          <td>
-						                            <input id="linkpr1" type="text" size="39" value="" name="linkpr1">
+						                            <input id="slideHref" type="text" size="80" value="" name="slideHref">
 						                          </td>
 						                        </tr>
 						                        <tr>
 						                          <td colspan="4">
-						                            <input type="button" class="button-primary button button-small" value="保存" style="color:white;">
+						                            <input type="button" id="save" class="button-primary button button-small" value="保存" style="color:white;">
 						                          </td>
 						                        </tr>
 											</tbody>
@@ -82,6 +77,89 @@
      </tbody>
 	</table>
 	<script type="text/javascript">
+		$().ready(function(){
+			$("input[name='image']").change(function(){
+				var showimg = $('#showimg'); 
+				var imageFile = this;
+				var imageFileVal = imageFile.value;
+				var imageFileSuffix = imageFileVal.substring(imageFileVal.lastIndexOf(".")).toLowerCase();
+				if ( !checkFileSuffix(imageFileSuffix) ) {
+					alert("不允许上传非图片类型的文件！");
+					return false;
+				}
+				
+				$.ajaxFileUpload({
+					url:"FileUploadAction!ajaxUploadSlideImage.action",
+					secureuri:false,
+					fileElementId:'image',
+					dataType: 'json',
+					success:function(data){
+						if (data.code == 90000) {
+							var img = "/zhonglv"+data.uploadImagePath; 
+			                showimg.html("<img src='"+img+"' width='800' height='300'>"); 
+			                $("#slideImgPath").val(data.uploadImagePath);
+						}else{
+							alert(data.errMsg);
+						}
+					},
+		            error: function (data, status, e)//服务器响应失败处理函数
+		            {
+		                alert(e);
+		            }
+				});
+			});
+			
+			$("#save").click(function(){
+				var slideName = $("#slideName").val();
+				var slideImgPath = $("#slideImgPath").val();
+				var slideHref = $("#slideHref").val();
+				if ( !slideName ) {
+					showErrMsg("滑块名称不能为空！");
+					return false;
+				}
+				if ( !slideImgPath ) {
+					showErrMsg("请上传图片先！");
+					return false;
+				}
+				
+				var data = {};
+				data['slideVO.slideName']=slideName;
+				data['slideVO.slideImgPath']=slideImgPath;
+				data['slideVO.slideHref']=slideHref;
+				$.ajax({
+					type:"post",
+					url:"SlideManagerAction!ajaxAddSlide.action",
+					async:false,
+					dataType:"json",
+					data:data,
+					success:function(data){
+						if ( data.code == 90000 ) {
+							alert("滑块添加成功!");
+							window.location.reload();
+						}else{
+							alert(data.errMsg);
+						}
+					},
+					error: function (data, status, e)//服务器响应失败处理函数
+		            {
+		                alert(e);
+		            }
+				});
+				
+			});
+		});
+		
+		function showErrMsg(errMsg){
+			$("#errMsg").text(errMsg);
+			$("#errMsg").css("color","red");
+		}
+		
+		function checkFileSuffix(suffix) {
+		    if (!suffix.match(/.jpg|.gif|.png|.bmp|.jpeg/i)) {
+		        return false;
+		    }
+		    return true;
+		}
 	</script>
 </div>
 </body>

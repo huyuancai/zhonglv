@@ -268,7 +268,7 @@ H1 a {
 						</table>
 						<ul class="MM">
 							<li><a href="<s:url value="/admin/slide/slide_add.jsp"/>" target="main">添加滑块</a></li>
-							<li><a href="<s:url value="/admin/slide/slide_manager.jsp"/>" target="main">管理滑块</a></li>
+							<li><a href="<s:url value="SlideManagerAction.action"/>" target="main">管理滑块</a></li>
 						</ul>
 					</div>
 				</div> <script type="text/javascript">

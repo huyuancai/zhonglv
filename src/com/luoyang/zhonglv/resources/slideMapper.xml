@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luoyang.zhonglv.dao.ISlideDAO">
+
+	<resultMap type="com.luoyang.zhonglv.dto.SlideDTO" id="Slide">
+		<id column="slide_id" property="slideId"/>
+		<result column="slide_href" property="slideHref"/>
+		<result column="slide_img_path" property="slideImgPath"/>
+		<result column="slide_name" property="slideName"/>
+	</resultMap>
+	
+	<insert id="addSlide" parameterType="com.luoyang.zhonglv.dto.SlideDTO">
+		INSERT INTO
+			zl_slide(
+				slide_href,
+				slide_img_path,
+				slide_name
+			)
+		VALUES(
+			#{slideHref},
+			#{slideImgPath},
+			#{slideName}
+		)
+	</insert>
+	
+	<select id="getSlideByPageForManager" resultMap="Slide" parameterType="java.util.Map">
+	    SELECT
+	    	s.slide_id,
+			s.slide_href,
+			s.slide_img_path,
+			s.slide_name
+		FROM
+			zl_slide s
+		WHERE 1=1
+			<if test="slideName != null">
+			    AND s.slide_name LIKE '%${slideName}%'
+			</if>
+		ORDER BY
+			s.slide_id ASC
+		LIMIT #{pageSize} OFFSET #{currentPage}
+	</select>
+	
+	<select id="getSlideCount" resultType="Long" parameterType="java.util.Map">
+	    SELECT
+			COUNT(1)
+		FROM
+			zl_slide s
+		WHERE 1=1
+			<if test="slideName != null">
+			    AND s.slide_name LIKE '%${slideName}%'
+			</if>
+	</select>
+</mapper>

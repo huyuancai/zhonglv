@@ -30,19 +30,19 @@
               	<td width="17%">操作</td>
           	</tr>
           	
-          	<s:iterator var="routeVO" value="#request.routeVOs" status="s">
+          	<s:iterator var="slideVO" value="#request.slideVOs" status="s">
 	          	<tr class="lines">
 	            	<td>
-	              		<div id="div_route_id_<s:property value="#s.index+1"/>">
-	              			<input id="route_id<s:property value="#s.index+1"/>" type="checkbox" value="<s:property value="#routeVO.getRouteId()"/>" name="route_id">
+	              		<div id="div_slide_id_<s:property value="#s.index+1"/>">
+	              			<input id="slide_id<s:property value="#s.index+1"/>" type="checkbox" value="<s:property value="#slideVO.getSlideId()"/>" name="slide_id">
 						</div>
 	            	</td>
-	            	<td><s:property value="#routeVO.getRouteNumber()"/></td>
-	            	<td><s:property value="#routeVO.getRoutePrice()"/></td>
+	            	<td><img title="<s:property value="#slideVO.getSlideName()"/>" width="260" height="100" src="<s:url value="%{#slideVO.getSlideImgPath()}"/>"></td>
+	            	<td><s:property value="#slideVO.getSlideName()"/></td>
 	            	<td>
-			            <a href="RouteManagerAction!editRouteById.action?routeVO.routeId=<s:property value="#routeVO.getRouteId()"/>">编辑</a>
+			            <a href="SlideManagerAction!editSlideById.action?slideVO.slideId=<s:property value="#slideVO.getSlideId()"/>">编辑</a>
 						      |
-				      	<a onclick="deleteRoute(<s:property value="#routeVO.getRouteId()"/>)" href="javascript:void(0);">删除</a>			
+				      	<a onclick="deleteSlide(<s:property value="#slideVO.getSlideId()"/>)" href="javascript:void(0);">删除</a>			
 				    </td>
 	          	</tr>
           	</s:iterator>

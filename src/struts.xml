@@ -147,6 +147,9 @@
 		<action name="RouteImageAction" class="routeImageAction">
 		    <result name="success">/admin/route/upload.jsp</result>
 		</action>
+		<action name="SlideManagerAction" class="slideManagerAction">
+		    <result name="success">/admin/slide/slide_manager.jsp</result>
+		</action>
 	</package>
 
 </struts>

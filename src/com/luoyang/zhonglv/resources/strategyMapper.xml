@@ -72,6 +72,10 @@
 			COUNT(1)
 		FROM
 			zl_tourism_strategy ts
+		WHERE 1=1
+			<if test="strategyName != null">
+			    AND ts.strategy_name LIKE '%${strategyName}%'
+			</if>
 	</select>
 	
     <select id="getTourismStrategyById" resultMap="TourismStrategy" parameterType="java.lang.Long">

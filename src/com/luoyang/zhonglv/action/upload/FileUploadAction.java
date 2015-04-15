@@ -46,6 +46,15 @@ public class FileUploadAction extends BaseAction {
 	public String ajaxUploadVisaImage() {
 		return uploadImage( UPLOAD_FILE_PATH + "/Visa" );
 	}
+	
+	/**
+	 * 滑块图片上传
+	 * 
+	 * @return
+	 */
+	public String ajaxUploadSlideImage() {
+		return uploadImage( UPLOAD_FILE_PATH + "/Slide" );
+	}
 
 	@SuppressWarnings("resource")
 	private String uploadImage( String savePath ) {

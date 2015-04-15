@@ -72,6 +72,10 @@
 		scope="singleton">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
+	<bean id="slideDAO" class="com.luoyang.zhonglv.dao.impl.SlideDAOImpl"
+		scope="singleton">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
 
 	<!-- service -->
 	<bean id="routeService" class="com.luoyang.zhonglv.service.impl.RouteServiceImpl"
@@ -134,6 +138,10 @@
 		scope="singleton">
 		<property name="tourismStrategyDAO" ref="tourismStrategyDAO" />
 	</bean>
+	<bean id="slideService" class="com.luoyang.zhonglv.service.impl.SlideServiceImpl"
+		scope="singleton">
+		<property name="slideDAO" ref="slideDAO" />
+	</bean>
 
 	<!-- action -->
 	<bean id="homePageAction" class="com.luoyang.zhonglv.action.HomePageAction"
@@ -168,6 +176,7 @@
 	<bean id="visaVO" class="com.luoyang.zhonglv.vo.VisaVO" scope="prototype"></bean>
 	<bean id="tourismStrategyVO" class="com.luoyang.zhonglv.vo.TourismStrategyVO" scope="prototype"></bean>
 	<bean id="tourismNewsVO" class="com.luoyang.zhonglv.vo.TourismNewsVO" scope="prototype"></bean>
+	<bean id="slideVO" class="com.luoyang.zhonglv.vo.SlideVO" scope="prototype"></bean>
 	<bean id="routeManagerAction" class="com.luoyang.zhonglv.action.admin.route.RouteManagerAction" scope="request" >
 		<property name="routeService" ref="routeService" />
 		<property name="routeTypeService" ref="routeTypeService" />
@@ -248,5 +257,11 @@
 	<bean id="routeImageAction" class="com.luoyang.zhonglv.action.admin.route.RouteImageAction"
 		scope="session">
 		<property name="routeImageService" ref="routeImageService" />
+	</bean>
+	<bean id="slideManagerAction" class="com.luoyang.zhonglv.action.admin.slide.SlideManagerAction" 
+		scope="request">
+		<property name="slideService" ref="slideService" />
+		<property name="pageVO" ref="pageVO"/>
+		<property name="slideVO" ref="slideVO"/>
 	</bean>
 </beans> 

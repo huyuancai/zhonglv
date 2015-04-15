@@ -72,6 +72,10 @@
 			COUNT(1)
 		FROM
 			zl_tourism_news tn
+		WHERE 1=1
+			<if test="newsName != null">
+			    AND ts.news_name LIKE '%${newsName}%'
+			</if>
 	</select>
 	
     <select id="getTourismNewsById" resultMap="TourismNews" parameterType="java.lang.Long">

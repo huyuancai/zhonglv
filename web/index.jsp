@@ -33,12 +33,12 @@ $().ready(function(){
 	    <td width="960" valign="top">
 			<div class="wrap af3">
 				<ul class="slidebox">
-					<li><a href="javascript:void(0);" title="上岛咖啡就1"><img src="<s:url value="/images/slider1.jpg"/>" /></a></li>
-					<li><a href="javascript:void(0);" title="上岛咖啡就2"><img src="<s:url value="/images/slider2.jpg"/>" /></a></li>
-					<li><a href="javascript:void(0);" title="上岛咖啡就3"><img src="<s:url value="/images/slider3.jpg"/>" /></a></li>
-					<li><a href="javascript:void(0);" title="上岛咖啡就4"><img src="<s:url value="/images/slider4.jpg"/>" /></a></li>
-					<li><a href="javascript:void(0);" title="上岛咖啡就5"><img src="<s:url value="/images/slider5.jpg"/>" /></a></li>
-					<li><a href="javascript:void(0);" title="上岛咖啡就6"><img src="<s:url value="/images/slider6.jpg"/>" /></a></li>
+					<li><a href="javascript:void(0);" ><img src="<s:url value="/images/slider1.jpg"/>" /></a></li>
+					<li><a href="javascript:void(0);" ><img src="<s:url value="/images/slider2.jpg"/>" /></a></li>
+					<li><a href="javascript:void(0);" ><img src="<s:url value="/images/slider3.jpg"/>" /></a></li>
+					<li><a href="javascript:void(0);" ><img src="<s:url value="/images/slider4.jpg"/>" /></a></li>
+					<li><a href="javascript:void(0);" ><img src="<s:url value="/images/slider5.jpg"/>" /></a></li>
+					<li><a href="javascript:void(0);" ><img src="<s:url value="/images/slider6.jpg"/>" /></a></li>
 				</ul>
 			</div>
       </td>
