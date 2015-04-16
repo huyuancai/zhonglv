@@ -17,6 +17,7 @@ import com.luoyang.zhonglv.vo.SlideVO;
 public class SlideManagerAction extends BaseAction {
 
 	private static final long serialVersionUID = -7034191855780666088L;
+	private static final String RET_SLIDE_EDIT = "slideEdit";
 	private ISlideService slideService;
 	private RetResultVO resultVO = new RetResultVO();
 	private List<SlideVO> slideVOs;
@@ -67,6 +68,81 @@ public class SlideManagerAction extends BaseAction {
 			}
 			resultVO.setCode( RET_CODE.E92133.getCode() );
 			resultVO.setErrMsg( RET_CODE.E92133.getErrMsg() );
+			return RET_JSON;
+		}
+		else {
+			return LOGIN;
+		}
+	}
+
+	public String editSlideById() {
+		if ( super.isLogin() ) {
+			try {
+				if ( null != slideVO.getSlideId() ) {
+					slideVO = slideService.getSlideById( slideVO.getSlideId() );
+				}
+			}
+			catch ( Exception e ) {
+				logger.error( ExceptionUtils.getFullStackTrace( e ) );
+			}
+			return RET_SLIDE_EDIT;
+		}
+		else {
+			return LOGIN;
+		}
+	}
+
+	public String ajaxDeleteSlide() {
+		if ( super.isLogin() ) {
+			try {
+				if ( null != slideVO.getSlideId() ) {
+					slideService.deleteSlide( slideVO.getSlideId() );
+					resultVO.setCode( RET_CODE.S90000.getCode() );
+					return RET_JSON;
+				}
+			}
+			catch ( Exception e ) {
+				logger.error( ExceptionUtils.getFullStackTrace( e ) );
+			}
+			resultVO.setCode( RET_CODE.E92134.getCode() );
+			resultVO.setErrMsg( RET_CODE.E92134.getErrMsg() );
+			return RET_JSON;
+		}
+		else {
+			return LOGIN;
+		}
+	}
+
+	public String ajaxUpdateSlide() {
+		if ( super.isLogin() ) {
+			try {
+				if ( null != slideVO ) {
+					if ( null == slideVO.getSlideId() ) {
+						resultVO.setCode( RET_CODE.E92131.getCode() );
+						resultVO.setErrMsg( RET_CODE.E92131.getErrMsg() );
+						return RET_JSON;
+					}
+					if ( StringUtils.isEmpty( slideVO.getSlideImgPath() ) ) {
+						resultVO.setCode( RET_CODE.E92131.getCode() );
+						resultVO.setErrMsg( RET_CODE.E92131.getErrMsg() );
+						return RET_JSON;
+					}
+					if ( StringUtils.isEmpty( slideVO.getSlideName() ) ) {
+						resultVO.setCode( RET_CODE.E92131.getCode() );
+						resultVO.setErrMsg( RET_CODE.E92131.getErrMsg() );
+						return RET_JSON;
+					}
+					if ( slideService.updateSlide( slideVO ) ) {
+						resultVO.setCode( RET_CODE.S90000.getCode() );
+						return RET_JSON;
+					}
+				}
+			}
+			catch ( Exception e ) {
+				logger.error( ExceptionUtils.getFullStackTrace( e ) );
+			}
+			resultVO.setCode( RET_CODE.E92135.getCode() );
+			resultVO.setErrMsg( RET_CODE.E92135.getErrMsg() );
 			return RET_JSON;
 		}
 		else {

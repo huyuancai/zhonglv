@@ -53,4 +53,34 @@
 			    AND s.slide_name LIKE '%${slideName}%'
 			</if>
 	</select>
+	
+	<select id="getSlideById" resultMap="Slide" parameterType="java.lang.Long">
+		SELECT 
+			s.slide_id,
+			s.slide_href,
+			s.slide_name,
+			s.slide_img_path
+		FROM 
+			zl_slide s
+		WHERE
+			s.slide_id = #{slideId}
+	</select>
+	
+	<delete id="deleteSlide" parameterType="java.lang.Long">
+		DELETE FROM
+			zl_slide
+		WHERE
+			slide_id = #{slideId}
+	</delete>
+	
+	<update id="updateSlide" parameterType="com.luoyang.zhonglv.dto.SlideDTO">
+		UPDATE 
+			zl_slide
+		SET
+			slide_href = #{slideHref},
+			slide_name = #{slideName},
+			slide_img_path = #{slideImgPath}
+		WHERE
+			slide_id = #{slideId}
+	</update>
 </mapper>

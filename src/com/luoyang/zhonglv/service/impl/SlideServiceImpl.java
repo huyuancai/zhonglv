@@ -41,6 +41,32 @@ public class SlideServiceImpl extends BaseService implements ISlideService {
 		return slideDAO.getSlideCount( paramMap );
 	}
 
+	public SlideVO getSlideById( Long slideId ) throws DataAccessException {
+		SlideVO slideVO = null;
+		SlideDTO slideDTO = null;
+		if ( null != slideId ) {
+			slideDTO = slideDAO.getSlideById( slideId );
+			if ( null != slideDTO ) {
+				slideVO = BeanUtils.copyObject( slideDTO, SlideVO.class );
+			}
+		}
+		return slideVO;
+	}
+
+	public void deleteSlide( Long slideId ) throws DataAccessException {
+		slideDAO.deleteSlide( slideId );
+	}
+	
+	public boolean updateSlide( SlideVO slideVO ) throws DataAccessException {
+		SlideDTO slideDTO = null;
+		boolean flag = false;
+		if ( null != slideVO ) {
+			slideDTO = BeanUtils.copyObject( slideVO, SlideDTO.class );
+			flag = slideDAO.updateSlide( slideDTO );
+		}
+		return flag;
+	}
+
 	// -------------------------------getter/setter---------------------------//
 	public void setSlideDAO( ISlideDAO slideDAO ) {
 		this.slideDAO = slideDAO;

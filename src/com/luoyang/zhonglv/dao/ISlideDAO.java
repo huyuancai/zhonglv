@@ -31,4 +31,27 @@ public interface ISlideDAO {
 	 * @throws DataAccessException
 	 */
 	public Long getSlideCount( Map<String, Object> paramMap ) throws DataAccessException;
+	
+	/**
+	 * 根据Id获取滑块信息
+	 * @param slideId
+	 * @return
+	 * @throws DataAccessException
+	 */
+	public SlideDTO getSlideById( Long slideId ) throws DataAccessException;
+	
+	/**
+	 * 根据Id删除滑块信息
+	 * @param slideId
+	 * @throws DataAccessException
+	 */
+	public void deleteSlide( Long slideId ) throws DataAccessException;
+	
+	/**
+	 * 修改滑块信息
+	 * @param slideDTO
+	 * @return
+	 * @throws DataAccessException
+	 */
+	public boolean updateSlide( SlideDTO slideDTO ) throws DataAccessException;
 }
