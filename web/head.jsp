@@ -5,10 +5,9 @@
 <head>
 	<title>洛阳中旅旅行社，洛阳旅行社，洛阳旅游网，洛阳旅游，国内旅游，省内旅游，境外旅游，纯玩旅游，老年旅游---</title>
 	<meta name="keywords" content="洛阳中旅旅行社，洛阳旅行社，洛阳旅游网，洛阳旅游，国内旅游，省内旅游，境外旅游，纯玩旅游，老年旅游" />
-	<meta name="description" content="洛阳中旅旅行社" />
+	<meta name="description" content="到洛阳看牡丹找洛阳旅行社|洛阳中旅|洛阳旅行社|旅游攻略|旅行社|洛阳旅行社|龙门石窟" />
 	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=9">	
-	<meta name="baidu-site-verification" content="XEptrtJiFV" />
 	<link href="<s:url value="/css/style.css"/>" rel="stylesheet" type="text/css"/>
 	<link href="<s:url value="/images/favicon.ico"/>" rel="icon" type="image/x-icon"/>
 	<script type="text/javascript" src="<s:url value="/js/jquery-1.4.4.min.js"/>"></script>
